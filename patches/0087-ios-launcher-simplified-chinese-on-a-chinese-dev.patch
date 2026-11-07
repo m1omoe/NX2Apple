@@ -1,0 +1,380 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Muse <muse@localhost>
+Date: Sat, 7 Nov 2026 11:54:42 +0800
+Subject: [PATCH] ios launcher: Simplified Chinese on a Chinese device
+
+The single-game launcher (dm/ios) hardcodes English and its project.yml
+declares no CFBundleLocalizations, so a device set to Chinese shows
+English everywhere, unlike the shell (patches 0055/0056). DmL10n in
+LauncherSettings.swift returns the Simplified Chinese of a text when
+the preferred language is Chinese and the text itself otherwise. The
+setting rows take the Mac launcher's translations (frontend/l10n
+launch.* and ios.setting.*), the screen's own texts are translated
+with them, and project.yml declares en and zh-Hans.
+
+Upstream-Status: fork-only
+Reason: the single-game launcher hardcodes English and declares no localizations, so a Chinese device shows English
+Issue: LNPANDY/NX2Apple#418
+
+---
+ dm/ios/Sources/GameMenu.swift         |  12 +--
+ dm/ios/Sources/Launcher.swift         |  46 ++++++------
+ dm/ios/Sources/LauncherRow.swift      |  10 +--
+ dm/ios/Sources/LauncherSettings.swift | 103 ++++++++++++++++++++++++++
+ dm/ios/project.yml                    |   1 +
+ 5 files changed, 138 insertions(+), 34 deletions(-)
+
+diff --git a/dm/ios/Sources/GameMenu.swift b/dm/ios/Sources/GameMenu.swift
+index f91b002..28ae082 100644
+--- a/dm/ios/Sources/GameMenu.swift
++++ b/dm/ios/Sources/GameMenu.swift
+@@ -8,7 +8,7 @@ var gameMenuModel: LauncherModel?   // the settings screen's model (Launcher.swi
+ 
+ @_cdecl("dm_game_menu")
+ public func dmGameMenu() -> UnsafeMutableRawPointer {
+-    let title = gameMenuModel != nil ? "More settings on the start screen" : ""
++    let title = gameMenuModel != nil ? DmL10n.t("More settings on the start screen") : ""
+     let menu = UIMenu(title: title, children: [UIDeferredMenuElement.uncached { done in done(gameMenuItems()) }])   // built each time it opens, so it shows the current choices
+     return Unmanaged.passRetained(menu).toOpaque()
+ }
+@@ -18,7 +18,7 @@ private func gameMenuItems() -> [UIMenuElement] {
+     let layouts = (0..<3).filter { dm_pad_layout_offered(Int32($0)) }.map { l in
+         UIAction(title: names[l], state: dm_pad_layout() == l ? .on : .off) { _ in dm_pad_layout_set(Int32(l)) }
+     }
+-    let layout = UIMenu(title: "Controller layout", options: .singleSelection, children: layouts)   // a choice's value shows in its submenu: a subtitle would make each row two lines
++    let layout = UIMenu(title: DmL10n.t("Controller layout"), options: .singleSelection, children: layouts)   // a choice's value shows in its submenu: a subtitle would make each row two lines
+     var items: [UIMenuElement] = []
+     var placed = false
+     if let m = gameMenuModel {
+@@ -39,12 +39,12 @@ private func gameMenuRow(_ m: LauncherModel, _ s: Setting) -> UIMenuElement {
+     let attributes: UIMenuElement.Attributes = fixed ? .disabled : []
+     func pick(_ v: String) { m.choose(s, v); _ = dm_setting_live(s.env, v) }
+     if s.kind == "toggle" {
+-        let a = UIAction(title: s.label, attributes: attributes, state: now == s.onValue ? .on : .off) { _ in pick(now == s.onValue ? s.offValue : s.onValue) }
+-        if fixed { a.subtitle = "Set in env.txt" }
++        let a = UIAction(title: DmL10n.t(s.label), attributes: attributes, state: now == s.onValue ? .on : .off) { _ in pick(now == s.onValue ? s.offValue : s.onValue) }
++        if fixed { a.subtitle = DmL10n.t("Set in env.txt") }
+         return a
+     }
+     let options = s.options ?? []
+     let current = options.first { $0[0] == now }?[1] ?? now
+-    let actions = options.map { o in UIAction(title: o[1], attributes: attributes, state: o[0] == now ? .on : .off) { _ in pick(o[0]) } }
+-    return UIMenu(title: s.label, subtitle: fixed ? "\(current), set in env.txt" : nil, options: .singleSelection, children: actions)
++    let actions = options.map { o in UIAction(title: DmL10n.t(o[1]), attributes: attributes, state: o[0] == now ? .on : .off) { _ in pick(o[0]) } }
++    return UIMenu(title: DmL10n.t(s.label), subtitle: fixed ? "\(DmL10n.t(current)) · \(DmL10n.t("Set in env.txt"))" : nil, options: .singleSelection, children: actions)
+ }
+diff --git a/dm/ios/Sources/Launcher.swift b/dm/ios/Sources/Launcher.swift
+index 011a893..faf2c7c 100644
+--- a/dm/ios/Sources/Launcher.swift
++++ b/dm/ios/Sources/Launcher.swift
+@@ -24,32 +24,32 @@ private struct GameDataSection: View {
+     var body: some View {
+         Section {
+             HStack {
+-                Text("Game data")
++                Text(DmL10n.t("Game data"))
+                 Spacer()
+-                Text(picked.isEmpty ? "This app's folder" : (picked as NSString).lastPathComponent)
++                Text(picked.isEmpty ? DmL10n.t("This app's folder") : (picked as NSString).lastPathComponent)
+                     .foregroundStyle(.secondary).lineLimit(1).truncationMode(.middle)
+             }
+-            Button(picked.isEmpty ? "Choose game data…" : "Choose a different location…") { picking = true }
++            Button(picked.isEmpty ? DmL10n.t("Choose game data…") : DmL10n.t("Choose a different location…")) { picking = true }
+                 // The sheet sits on the button, not on the Section: SwiftUI hands a Section's modifiers to every row, so one tap presented a picker per row and they invalidated each other (LNPANDY/NX2Apple#315).
+                 .sheet(isPresented: $picking) {
+                     DocumentPicker(types: [.item]) { url in
+                         picking = false
+                         if dm_store_picked_data(url) {
+-                            note = "Saved. The game uses this location when you press Play."
++                            note = DmL10n.t("Saved. The game uses this location when you press Play.")
+                             refresh()
+                         } else {
+-                            note = "That location could not be remembered — try a different one."
++                            note = DmL10n.t("That location could not be remembered — try a different one.")
+                         }
+                     } onCancel: { picking = false }
+                 }
+             if !picked.isEmpty {
+-                Button("Use the app's own data again", role: .destructive) {
++                Button(DmL10n.t("Use the app's own data again"), role: .destructive) {
+                     dm_clear_picked_data(); refresh(); note = ""
+                 }
+             }
+         } footer: {
+             Text(note.isEmpty
+-                 ? "Pick the game's romfs.img or its RomFS folder — an external drive or iCloud Drive works. The app remembers the choice; a re-signed build asks once more."
++                 ? DmL10n.t("Pick the game's romfs.img or its RomFS folder — an external drive or iCloud Drive works. The app remembers the choice; a re-signed build asks once more.")
+                  : note)
+         }
+         .onAppear(perform: refresh)
+@@ -62,7 +62,7 @@ private struct GameDataSection: View {
+         var stale: ObjCBool = false
+         picked = dm_picked_data_path(&stale) ?? ""
+         if stale.boolValue && picked.isEmpty {
+-            note = "The location you picked before is no longer readable (the app was signed differently). Please choose it again."
++            note = DmL10n.t("The location you picked before is no longer readable (the app was signed differently). Please choose it again.")
+         } else if note.isEmpty, let old = dm_old_archive_message() {
+             note = String(cString: old)
+         }
+@@ -80,32 +80,32 @@ private struct CloudSavesSection: View {
+     var body: some View {
+         Section {
+             HStack {
+-                Text("Cloud saves")
++                Text(DmL10n.t("Cloud saves"))
+                 Spacer()
+-                Text(folder.isEmpty ? "Off" : (folder as NSString).lastPathComponent)
++                Text(folder.isEmpty ? DmL10n.t("Off") : (folder as NSString).lastPathComponent)
+                     .foregroundStyle(.secondary).lineLimit(1).truncationMode(.middle)
+             }
+-            Button(folder.isEmpty ? "Choose a folder in iCloud Drive…" : "Choose a different folder…") { picking = true }
++            Button(folder.isEmpty ? DmL10n.t("Choose a folder in iCloud Drive…") : DmL10n.t("Choose a different folder…")) { picking = true }
+                 // The sheet sits on the button, not on the Section: SwiftUI hands a Section's modifiers to every row, so one tap presented a picker per row and they invalidated each other (LNPANDY/NX2Apple#315).
+                 .sheet(isPresented: $picking) {
+                     DocumentPicker(types: [.folder]) { url in
+                         picking = false
+                         if dm_store_cloud_saves(url) {
+-                            note = "Saved. The game uses this folder when you press Play."
++                            note = DmL10n.t("Saved. The game uses this folder when you press Play.")
+                             refresh()
+                         } else {
+-                            note = "That folder could not be remembered — try a different one."
++                            note = DmL10n.t("That folder could not be remembered — try a different one.")
+                         }
+                     } onCancel: { picking = false }
+                 }
+             if !folder.isEmpty {
+-                Button("Turn off cloud saves", role: .destructive) {
++                Button(DmL10n.t("Turn off cloud saves"), role: .destructive) {
+                     dm_clear_cloud_saves(); refresh(); note = ""
+                 }
+             }
+         } footer: {
+             Text(note.isEmpty
+-                 ? "Choose a folder in iCloud Drive, and the same one in the Mac app's Cloud saves. The save comes in when the game starts and goes out after each save; a save that is replaced is kept in save-backups."
++                 ? DmL10n.t("Choose a folder in iCloud Drive, and the same one in the Mac app's Cloud saves. The save comes in when the game starts and goes out after each save; a save that is replaced is kept in save-backups.")
+                  : note)
+         }
+         .onAppear(perform: refresh)
+@@ -115,7 +115,7 @@ private struct CloudSavesSection: View {
+         var stale: ObjCBool = false
+         folder = dm_cloud_saves_path(&stale) ?? ""
+         if stale.boolValue && folder.isEmpty {
+-            note = "The folder you chose before is no longer readable (the app was signed differently). Please choose it again."
++            note = DmL10n.t("The folder you chose before is no longer readable (the app was signed differently). Please choose it again.")
+         }
+     }
+ }
+@@ -165,9 +165,9 @@ private struct LauncherView: View {
+                             .clipShape(RoundedRectangle(cornerRadius: 22))
+                             .accessibilityHidden(true)
+                     }
+-                    Text((info("CFBundleDisplayName") as? String) ?? "Game")
++                    Text((info("CFBundleDisplayName") as? String) ?? DmL10n.t("Game"))
+                         .font(.title.weight(.bold)).multilineTextAlignment(.center)
+-                    Text("Version \((info("CFBundleShortVersionString") as? String) ?? "")")
++                    Text("\(DmL10n.t("Version")) \((info("CFBundleShortVersionString") as? String) ?? "")")
+                         .font(.callout).foregroundStyle(.secondary)
+                     playButton
+                 }
+@@ -177,22 +177,22 @@ private struct LauncherView: View {
+                     ForEach(m.sections, id: \.self) { section in
+                         let rows = m.rows(in: section)
+                         if !rows.isEmpty {
+-                            Section(section) {
++                            Section(DmL10n.t(section)) {
+                                 ForEach(rows) { SettingRow(s: $0, m: m) }
+                             }
+                         }
+                     }
+                     Section {
+-                        Button("Reset to tested defaults") { m.reset() }
++                        Button(DmL10n.t("Reset to tested defaults")) { m.reset() }
+                             .disabled(!m.changed)
+                     } footer: {
+-                        Text("Brings back all settings this game was tested with.")
++                        Text(DmL10n.t("Brings back all settings this game was tested with."))
+                     }
+                     GameDataSection()
+                     CloudSavesSection()
+                     Section {
+                         HStack {
+-                            Text("Memory available")
++                            Text(DmL10n.t("Memory available"))
+                             Spacer()
+                             Text(ByteCountFormatter.string(fromByteCount: Int64(memory), countStyle: .memory)).monospacedDigit().foregroundStyle(.secondary)
+                         }
+@@ -213,7 +213,7 @@ private struct LauncherView: View {
+     }
+ 
+     @ViewBuilder var playButton: some View {
+-        let button = Button(action: play) { Text("Play").font(.title3.weight(.semibold)).frame(maxWidth: 220) }.controlSize(.large)
++        let button = Button(action: play) { Text(DmL10n.t("Play")).font(.title3.weight(.semibold)).frame(maxWidth: 220) }.controlSize(.large)
+         if #available(iOS 26.0, *) { button.buttonStyle(.glassProminent) } else { button.buttonStyle(.borderedProminent) }
+     }
+ 
+diff --git a/dm/ios/Sources/LauncherRow.swift b/dm/ios/Sources/LauncherRow.swift
+index 82fa3b3..e3db484 100644
+--- a/dm/ios/Sources/LauncherRow.swift
++++ b/dm/ios/Sources/LauncherRow.swift
+@@ -12,8 +12,8 @@ struct SettingRow: View {
+ 
+     private var locked: Bool { m.fixed.contains(s.env) }
+     private var note: String {
+-        guard locked else { return s.note }
+-        return (s.note.isEmpty ? "" : s.note + " · ") + (m.fromLaunch.contains(s.env) ? "Set at launch" : "Set by an env file")
++        guard locked else { return DmL10n.t(s.note) }
++        return (s.note.isEmpty ? "" : DmL10n.t(s.note) + " · ") + (m.fromLaunch.contains(s.env) ? DmL10n.t("Set at launch") : DmL10n.t("Set by an env file"))
+     }
+     private var rangeValue: Binding<Double> {
+         Binding(get: { Double(m.values[s.env] ?? s.def) ?? s.max ?? 1 },
+@@ -23,7 +23,7 @@ struct SettingRow: View {
+ 
+     private var settingLabel: some View {
+         VStack(alignment: .leading, spacing: 4) {
+-            Text(s.label)
++            Text(DmL10n.t(s.label))
+             if !note.isEmpty { Text(note).font(.footnote).foregroundStyle(.secondary) }
+         }
+     }
+@@ -33,7 +33,7 @@ struct SettingRow: View {
+             switch s.kind {
+             case "choice":
+                 Picker(selection: m.binding(s)) {
+-                    ForEach(s.options ?? [], id: \.[0]) { Text($0[1]).tag($0[0]) }
++                    ForEach(s.options ?? [], id: \.[0]) { Text(DmL10n.t($0[1])).tag($0[0]) }
+                 } label: {
+                     settingLabel
+                 }
+@@ -46,7 +46,7 @@ struct SettingRow: View {
+                         Text(percentage).monospacedDigit().foregroundStyle(.secondary)
+                     }
+                     Slider(value: rangeValue, in: (s.min ?? 0)...(s.max ?? 1), step: s.step ?? 0.05)
+-                        .accessibilityLabel(s.label)
++                        .accessibilityLabel(DmL10n.t(s.label))
+                         .accessibilityValue(percentage)
+                 }
+             default:
+diff --git a/dm/ios/Sources/LauncherSettings.swift b/dm/ios/Sources/LauncherSettings.swift
+index aec4414..2f4c53e 100644
+--- a/dm/ios/Sources/LauncherSettings.swift
++++ b/dm/ios/Sources/LauncherSettings.swift
+@@ -123,3 +123,106 @@ final class LauncherModel: ObservableObject {
+         }
+     }
+ }
++// DmL10n: Simplified Chinese for the launcher on a device whose language is Chinese (fork-only, LNPANDY/NX2Apple).
++// The settings rows of launcher.json are English (dm/games/settings.py), and so are this screen's own texts. On a Chinese
++// device DmL10n.t returns the Chinese of a text, elsewhere the text itself, so nothing changes for anyone else. The setting
++// texts are the Mac launcher's (frontend/l10n, launch.*), the same words the iOS shell's catalog carries (frontend-ios).
++enum DmL10n {
++    static let chinese = Locale.preferredLanguages.first?.hasPrefix("zh") == true
++    static func t(_ english: String) -> String { chinese ? (texts[english] ?? english) : english }
++
++    private static let texts: [String: String] = [
++        "120 fps": "120 fps",
++        "16:9 (Switch)": "16:9（Switch）",
++        "30 fps": "30 fps",
++        "60 fps": "60 fps",
++        "Adjusts resolution between 70% and 100% under load. Turn off to keep full resolution for the selected console mode.": "负载较高时在 70% 到 100% 之间调整分辨率。关闭后保持所选主机模式的完整分辨率。",
++        "Advanced settings": "高级设置",
++        "American English": "美式英语",
++        "Brazilian Portuguese": "巴西葡萄牙语",
++        "Brings back all settings this game was tested with.": "把所有设置恢复为这个游戏测试时的取值。",
++        "British English": "英式英语",
++        "Canadian French": "加拿大法语",
++        "Choose a different folder…": "选择其他文件夹…",
++        "Choose a different location…": "选择其他位置…",
++        "Choose a folder in iCloud Drive, and the same one in the Mac app's Cloud saves. The save comes in when the game starts and goes out after each save; a save that is replaced is kept in save-backups.": "选择 iCloud 云盘里的一个文件夹，并与 Mac App 的云存档选同一个。游戏开始时读入存档，每次保存后写回，被替换的存档会保存在 save-backups 里。",
++        "Choose a folder in iCloud Drive…": "选择 iCloud 云盘里的文件夹…",
++        "Choose game data…": "选择游戏数据…",
++        "Cloud saves": "云存档",
++        "Console mode": "主机模式",
++        "Controller layout": "手柄布局",
++        "Controls": "控制",
++        "Display mode": "显示模式",
++        "Docked": "底座模式",
++        "Dutch": "荷兰语",
++        "Dynamic resolution": "动态分辨率",
++        "Encode thread": "编码线程",
++        "Fill": "填充",
++        "Fill crops the game's 16:9 picture to cover the screen. Health bars, subtitles or maps near the edges can be cut off. A full-screen picture without cropping needs a patch for each game.": "填充会裁切游戏的 16:9 画面以铺满屏幕。边缘附近的血条、字幕或地图可能被裁掉。不裁切的全屏画面需要为每个游戏单独打补丁。",
++        "Fit": "适应",
++        "Frame buffering": "帧缓冲",
++        "Frame rate": "帧率",
++        "Frame-rate counter": "帧率显示",
++        "French": "法语",
++        "Fullscreen": "全屏",
++        "Game": "游戏",
++        "Game data": "游戏数据",
++        "Game language": "游戏语言",
++        "Game rumble": "游戏震动",
++        "Game's own": "游戏自带",
++        "Game's upscaler": "游戏自带超分",
++        "German": "德语",
++        "Handheld": "掌机模式",
++        "Hold frames when late": "帧延迟时保持",
++        "Italian": "意大利语",
++        "Japanese": "日语",
++        "Keeps a pipeline archive and uses more memory.": "保留管线存档，占用更多内存。",
++        "Korean": "韩语",
++        "Latin American Spanish": "拉丁美洲西班牙语",
++        "Memory available": "可用内存",
++        "Metal 4 pipelines": "Metal 4 管线",
++        "MetalFX": "MetalFX",
++        "More settings on the start screen": "更多设置在开始界面",
++        "Off": "关",
++        "Performance": "性能",
++        "Performance HUD": "性能 HUD",
++        "Pick the game's romfs.img or its RomFS folder — an external drive or iCloud Drive works. The app remembers the choice; a re-signed build asks once more.": "选择游戏的 romfs.img 或 RomFS 文件夹，外置硬盘或 iCloud 云盘都可以。App 会记住这次选择，重新签名打包的版本会再问一次。",
++        "Picture": "画面",
++        "Picture shape": "画面比例",
++        "Pipeline prebuild": "预先构建管线",
++        "Play": "开始",
++        "Portuguese": "葡萄牙语",
++        "Render scale": "渲染比例",
++        "Renders about a quarter more pixels: a little slower and warmer.": "渲染的像素约多四分之一：稍慢，发热稍多。",
++        "Reset to tested defaults": "恢复测试默认值",
++        "Rumble cutoff": "震动下限",
++        "Rumble strength": "震动强度",
++        "Russian": "俄语",
++        "Saved. The game uses this folder when you press Play.": "已保存。点「开始」时游戏会使用这个文件夹。",
++        "Saved. The game uses this location when you press Play.": "已保存。点「开始」时游戏会使用这个位置。",
++        "Set at launch": "由启动环境设定",
++        "Set by an env file": "由 env 文件设定",
++        "Set in env.txt": "已在 env.txt 中设定",
++        "Simplified Chinese": "简体中文",
++        "Spanish": "西班牙语",
++        "Standard": "标准",
++        "That folder could not be remembered — try a different one.": "这个文件夹没能记住，请换一个。",
++        "That location could not be remembered — try a different one.": "这个位置没能记住，请换一个。",
++        "The first start waits a few minutes for it, once.": "首次启动需要等待几分钟，仅此一次。",
++        "The folder you chose before is no longer readable (the app was signed differently). Please choose it again.": "之前选的文件夹现在读不了了（App 的签名变了），请重新选择。",
++        "The location you picked before is no longer readable (the app was signed differently). Please choose it again.": "之前选的位置现在读不了了（App 的签名变了），请重新选择。",
++        "This app's folder": "本 App 的文件夹",
++        "This build carries no list of launch options.": "这个版本没有附带启动选项列表。",
++        "Touch feedback": "触控反馈",
++        "Traditional Chinese": "繁体中文",
++        "Turn off cloud saves": "关闭云存档",
++        "Up to one frame more display latency.": "显示延迟最多增加一帧。",
++        "Upscaling": "超分",
++        "Use the app's own data again": "改用 App 自带的数据",
++        "Uses more GPU time and can increase heat.": "占用更多 GPU 时间，可能增加发热。",
++        "Version": "版本",
++        "Window": "窗口",
++        "iPhone Duo screen (1.43:1)": "iPhone Duo 屏幕（1.43:1）",
++        "Keeps a pipeline archive; uses more memory.": "保留管线存档，占用更多内存。",
++    ]
++}
+diff --git a/dm/ios/project.yml b/dm/ios/project.yml
+index 8964dbb..79f295e 100644
+--- a/dm/ios/project.yml
++++ b/dm/ios/project.yml
+@@ -30,6 +30,7 @@ targets:
+       path: Gen/Info.plist
+       properties:
+         CFBundleDisplayName: ${DM_DISPLAY_NAME}   # the game name in the base NSP (set by build_ipa.sh)
++        CFBundleLocalizations: [en, zh-Hans]   # the launcher's own texts (DmL10n in LauncherSettings.swift): without the declaration a Chinese device is never offered zh-Hans
+         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+         CFBundleShortVersionString: $(MARKETING_VERSION)
+         UILaunchScreen: {}

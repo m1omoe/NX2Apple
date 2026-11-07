@@ -1,0 +1,235 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Muse <muse@localhost>
+Date: Sat, 7 Nov 2026 11:54:42 +0800
+Subject: [PATCH] ios build: sign the packed IPA with a certificate imported
+ once
+
+sign_ipa.py keeps a .p12 and its .mobileprovision outside the repo
+(the macOS Application Support folder, the password in the Keychain)
+and signs through zsign. build_ipa.sh runs its auto mode after
+packing: a no-op without an imported certificate, a <name>-signed.ipa
+beside the IPA with one. A profile with one fixed App ID signs the
+app under that ID, as the sideload tools do.
+
+Upstream-Status: fork-only
+Reason: sign every built IPA with a certificate imported once, through zsign
+Issue: LNPANDY/NX2Apple#123
+
+---
+ dm/ios/tools/build_ipa.sh |   2 +
+ dm/ios/tools/sign_ipa.py  | 195 ++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 197 insertions(+)
+ create mode 100644 dm/ios/tools/sign_ipa.py
+
+diff --git a/dm/ios/tools/build_ipa.sh b/dm/ios/tools/build_ipa.sh
+index 3263fd5..77ea6e9 100755
+--- a/dm/ios/tools/build_ipa.sh
++++ b/dm/ios/tools/build_ipa.sh
+@@ -375,4 +375,6 @@ case "$PULL" in 0|1) ;; *) die "no DM_GAME_PSO_MTL4 in generated game profile";;
+ ZS=$(gp zip_store); [ -z "${PROGRAMS_TSV:-}" ] || ZS=$(for g in $(prog_rows | cut -f2); do python3 "$DM/games/game.py" "$g" zip_store; done | tr ':' '\n' | sort -u | paste -sd: -)   # every program's
+ PACK_OPTS=(--store "$ZS"); [ -n "${PSO:-}" ] || [ "${IOS_PULL:-$PULL}" = 1 ] || PACK_OPTS+=(--skip-suffix _bp.metallib)
+ python3 tools/pack_ipa.py "$OUT_IPA" "${PACK_OPTS[@]}" "${SKIP[@]}" "${MAPS[@]}" || die "pack_ipa"
++# Sign the packed IPA when a certificate was imported for it (dm/ios/tools/sign_ipa.py import): a no-op without one
++python3 "$DM/ios/tools/sign_ipa.py" auto "$OUT_IPA" || die "auto-sign (sign_ipa.py)"
+ t "done: $OUT_IPA ($(du -h "$OUT_IPA" | cut -f1))"
+diff --git a/dm/ios/tools/sign_ipa.py b/dm/ios/tools/sign_ipa.py
+new file mode 100644
+index 0000000..b8ed450
+--- /dev/null
++++ b/dm/ios/tools/sign_ipa.py
+@@ -0,0 +1,195 @@
++#!/usr/bin/env python3
++# Sign a built IPA with a certificate imported once (fork-only, LNPANDY/NX2Apple).
++#
++# The IPAs this project builds are unsigned (ad-hoc). Sideload tools sign them one by one. With a
++# certificate of your own (a .p12 and its .mobileprovision, the pair a signing service or your own
++# developer account gives you) the build can sign every IPA itself, through zsign
++# (https://github.com/zhlynn/zsign, the cross-platform IPA signer the sideload tools are built on):
++#
++#   python3 dm/ios/tools/sign_ipa.py import --p12 cert.p12 --profile app.mobileprovision
++#       Copies the pair into the signing store (below), asks for the .p12 password once and keeps it
++#       in the macOS Keychain (elsewhere: a 0600 file in the store, or set DM_SIGN_PASSWORD).
++#       Add --fetch-zsign to download zsign into the store too, --bundle-id to force a bundle ID.
++#   python3 dm/ios/tools/sign_ipa.py auto <ipa>
++#       What build_ipa.sh runs after packing: no imported certificate, nothing happens. With one,
++#       <name>-signed.ipa is written beside the IPA. A profile whose App ID is one fixed ID (a
++#       merchant certificate) makes the signer use that ID for the app, as the sideload tools do.
++#   python3 dm/ios/tools/sign_ipa.py sign <ipa> [-o out.ipa]
++#       The same, on demand, and it fails when no certificate is imported.
++#
++# The store is ~/Library/Application Support/NX2Apple/signing on a Mac, ~/.config/nx2apple/signing
++# elsewhere, DM_SIGN_DIR anywhere else. Nothing of it is in this repository. The password is read
++# from DM_SIGN_PASSWORD first, then the Keychain, then the store's password file.
++import argparse, getpass, hashlib, json, os, plistlib, platform, shutil, subprocess, sys, tarfile, urllib.request
++from pathlib import Path
++
++ZSIGN_RELEASE = 'v1.1.3'
++ZSIGN_ASSETS = {('Darwin', 'arm64'): 'zsign-macos-arm64.tar.gz', ('Linux', 'x86_64'): 'zsign-linux-x86_64.tar.gz',
++                ('Linux', 'aarch64'): 'zsign-linux-aarch64.tar.gz'}
++KEYCHAIN_SERVICE = 'nx2apple.signing'
++
++
++def store_dir() -> Path:
++    if os.environ.get('DM_SIGN_DIR'): return Path(os.environ['DM_SIGN_DIR']).expanduser()
++    if sys.platform == 'darwin': return Path.home() / 'Library' / 'Application Support' / 'NX2Apple' / 'signing'
++    return Path.home() / '.config' / 'nx2apple' / 'signing'
++
++
++def die(msg: str) -> 'SystemExit':
++    raise SystemExit(f'sign_ipa: {msg}')
++
++
++def load_config(store: Path) -> dict | None:
++    f = store / 'config.json'
++    if not f.is_file(): return None
++    try: return json.loads(f.read_text(encoding='utf-8'))
++    except Exception as e: die(f'{f} cannot be read: {e}')
++
++
++def profile_info(profile: Path) -> dict:
++    # A .mobileprovision is a CMS blob with the plist inside in the clear: read the XML out of it.
++    data = profile.read_bytes()
++    a, b = data.find(b'<?xml'), data.rfind(b'</plist>')
++    if a < 0 or b < 0: die(f'{profile} does not look like a .mobileprovision (no plist inside)')
++    try: p = plistlib.loads(data[a:b + len(b'</plist>')])
++    except Exception as e: die(f'{profile}: the plist inside cannot be read: {e}')
++    ent = p.get('Entitlements', {})
++    return {'name': p.get('Name', ''), 'uuid': p.get('UUID', ''), 'expires': str(p.get('ExpirationDate', '')),
++            'app_id': ent.get('application-identifier', ''), 'devices': len(p.get('ProvisionedDevices', []))}
++
++
++def profile_bundle_id(info: dict) -> str | None:
++    # TEAMID.com.example.app -> com.example.app; a wildcard (TEAMID.* or TEAMID.com.example.*) keeps the app's own ID.
++    app_id = info.get('app_id', '')
++    if '.' not in app_id: return None
++    rest = app_id.split('.', 1)[1]
++    return None if ('*' in rest or not rest) else rest
++
++
++def password_get(store: Path) -> str | None:
++    if os.environ.get('DM_SIGN_PASSWORD'): return os.environ['DM_SIGN_PASSWORD']
++    if sys.platform == 'darwin':
++        r = subprocess.run(['security', 'find-generic-password', '-s', KEYCHAIN_SERVICE, '-w'],
++                           capture_output=True, text=True)
++        if r.returncode == 0 and r.stdout.strip(): return r.stdout.strip()
++    f = store / 'password'
++    if f.is_file(): return f.read_text(encoding='utf-8').strip() or None
++    return None
++
++
++def password_put(store: Path, password: str) -> str:
++    if sys.platform == 'darwin':
++        r = subprocess.run(['security', 'add-generic-password', '-U', '-a', os.environ.get('USER', 'nx2apple'),
++                            '-s', KEYCHAIN_SERVICE, '-w', password], capture_output=True, text=True)
++        if r.returncode == 0: return 'the macOS Keychain'
++    f = store / 'password'
++    f.write_text(password, encoding='utf-8'); os.chmod(f, 0o600)
++    return f'{f} (mode 0600)'
++
++
++def find_zsign(store: Path, config: dict) -> Path | None:
++    named = config.get('zsign')
++    cands = [store / named if named and not Path(named).is_absolute() else named, store / 'zsign', shutil.which('zsign')]
++    for cand in cands:
++        if cand and Path(cand).is_file() and os.access(cand, os.X_OK): return Path(cand).resolve()
++    return None
++
++
++def fetch_zsign(store: Path) -> Path:
++    asset = ZSIGN_ASSETS.get((platform.system(), platform.machine()))
++    if not asset: die(f'no prebuilt zsign for {platform.system()} {platform.machine()}: '
++                      'build it from https://github.com/zhlynn/zsign and pass --zsign <path>')
++    base = f'https://github.com/zhlynn/zsign/releases/download/{ZSIGN_RELEASE}'
++    tmp = store / asset
++    print(f'sign_ipa: downloading {asset} ({ZSIGN_RELEASE})')
++    urllib.request.urlretrieve(f'{base}/{asset}', tmp)
++    sums = urllib.request.urlopen(f'{base}/SHA256SUMS.txt', timeout=30).read().decode()
++    want = next((l.split()[0] for l in sums.splitlines() if asset in l), None)
++    got = hashlib.sha256(tmp.read_bytes()).hexdigest()
++    if want and got != want: die(f'the download does not match its published SHA256 ({got} != {want})')
++    with tarfile.open(tmp) as t: t.extractall(store / 'zsign-dist')
++    tmp.unlink()
++    for exe in (store / 'zsign-dist').rglob('zsign'):
++        out = store / 'zsign'; shutil.copyfile(exe, out); os.chmod(out, 0o755); return out
++    die('the zsign download held no zsign binary')
++
++
++def cmd_import(a) -> None:
++    store = store_dir(); store.mkdir(parents=True, exist_ok=True)
++    p12, profile = Path(a.p12).expanduser(), Path(a.profile).expanduser()
++    if not p12.is_file(): die(f'no such .p12 file: {p12}')
++    if not profile.is_file(): die(f'no such .mobileprovision file: {profile}')
++    info = profile_info(profile)
++    shutil.copyfile(p12, store / 'cert.p12'); os.chmod(store / 'cert.p12', 0o600)
++    shutil.copyfile(profile, store / 'profile.mobileprovision'); os.chmod(store / 'profile.mobileprovision', 0o600)
++    config = {'p12': 'cert.p12', 'profile': 'profile.mobileprovision'}
++    if a.bundle_id: config['bundle_id'] = a.bundle_id
++    if a.name: config['name'] = a.name
++    if a.zsign:
++        z = Path(a.zsign).expanduser()
++        if not z.is_file(): die(f'no such zsign binary: {z}')
++        shutil.copyfile(z, store / 'zsign'); os.chmod(store / 'zsign', 0o755); config['zsign'] = 'zsign'
++    elif a.fetch_zsign: fetch_zsign(store); config['zsign'] = 'zsign'
++    (store / 'config.json').write_text(json.dumps(config, indent=2) + '\n', encoding='utf-8')
++    password = a.password or (getpass.getpass('Password of the .p12 (asked once): ') if sys.stdin.isatty() else None)
++    where = password_put(store, password) if password else None
++    print(f'sign_ipa: imported into {store}')
++    print(f"sign_ipa: profile \"{info['name']}\", App ID {info['app_id'] or '?'}, "
++          f"{info['devices']} device(s), expires {info['expires'] or '?'}")
++    fixed = profile_bundle_id(info)
++    if fixed: print(f'sign_ipa: the profile has one fixed App ID: builds will be signed as {a.bundle_id or fixed}')
++    if where: print(f'sign_ipa: the .p12 password is kept in {where}')
++    else: print('sign_ipa: no password stored: set DM_SIGN_PASSWORD when signing')
++
++
++def sign(ipa: Path, out: Path, store: Path, config: dict) -> Path:
++    zsign = find_zsign(store, config)
++    if not zsign: die('zsign is not available: re-run import with --fetch-zsign, or --zsign <path to a zsign binary>')
++    password = password_get(store)
++    if not password: die('no .p12 password: re-run import, or set DM_SIGN_PASSWORD')
++    info = profile_info(store / config['profile'])
++    args = [str(zsign), '-f', '-k', str(store / config['p12']), '-p', password,
++            '-m', str(store / config['profile']), '-o', str(out), '-z', '6']
++    bundle = config.get('bundle_id') or profile_bundle_id(info)
++    if bundle: args += ['-b', bundle]
++    if config.get('name'): args += ['-n', config['name']]
++    if config.get('entitlements'): args += ['-e', str(store / config['entitlements'])]
++    args.append(str(ipa))
++    r = subprocess.run(args, capture_output=True, text=True)
++    if r.returncode != 0 or not out.is_file():
++        die(f'zsign failed ({r.returncode}):\n{r.stdout[-1500:]}\n{r.stderr[-1500:]}')
++    return out
++
++
++def cmd_sign(a, auto: bool) -> None:
++    store = store_dir(); config = load_config(store)
++    ipa = Path(a.ipa).expanduser()
++    if config is None:
++        if auto: print('sign_ipa: no certificate imported, the IPA stays unsigned (sign_ipa.py import sets one up)'); return
++        die('no certificate imported yet: run sign_ipa.py import first')
++    if not ipa.is_file(): die(f'no such IPA: {ipa}')
++    out = Path(a.output).expanduser() if getattr(a, 'output', None) else ipa.with_name(ipa.stem + '-signed.ipa')
++    sign(ipa, out, store, config)
++    print(f'sign_ipa: signed: {out} ({out.stat().st_size / 1e6:.1f} MB)')
++
++
++def main() -> None:
++    ap = argparse.ArgumentParser(description='Sign built IPAs with a certificate imported once (zsign).')
++    sub = ap.add_subparsers(dest='cmd', required=True)
++    im = sub.add_parser('import', help='import a .p12 and its .mobileprovision into the signing store')
++    im.add_argument('--p12', required=True); im.add_argument('--profile', required=True)
++    im.add_argument('--password', help='the .p12 password (default: asked once; prefer the prompt or DM_SIGN_PASSWORD)')
++    im.add_argument('--bundle-id', help='force this bundle ID (default: a fixed App ID of the profile, else the app keeps its own)')
++    im.add_argument('--name', help='force the app display name')
++    im.add_argument('--zsign', help='path of a zsign binary to keep in the store')
++    im.add_argument('--fetch-zsign', action='store_true', help='download zsign into the store (SHA256 checked)')
++    im.set_defaults(fn=cmd_import)
++    for name, auto in (('sign', False), ('auto', True)):
++        s = sub.add_parser(name, help=('sign after a build, a no-op without an imported certificate' if auto else 'sign one IPA now'))
++        s.add_argument('ipa'); s.add_argument('-o', '--output')
++        s.set_defaults(fn=lambda a, auto=auto: cmd_sign(a, auto))
++    a = ap.parse_args(); a.fn(a)
++
++
++if __name__ == '__main__':
++    main()

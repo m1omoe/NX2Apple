@@ -70,3 +70,13 @@ GAME=<title id> W=<工作目录> PATCHED=<改写目录> \
 `--full-romfs`（或 `DM_FULL_ROMFS=1`）把 RomFS 打进包里——上游行为，只对小体量游戏有意义。
 
 RomFS 不再需要先打成分片归档：构建会把游戏数据写成一个 `romfs.img`。更早做好的分片归档（`romfs.idx` 加 `romfs.00`、`romfs.01`……）不再被读取；启动器会把这样的文件夹视为没有游戏数据，需要再发送一次 `romfs.img`。
+
+## 构建时自动签名（可选）
+
+构建出的 IPA 默认未签名。如果你有自己的证书（`.p12` 加配套的 `.mobileprovision`，比如签名服务给的那一对），可以导入一次，之后每次构建结束都会自动用 [zsign](https://github.com/zhlynn/zsign) 多产出一个 `<名字>-signed.ipa`，拿来就能装：
+
+```bash
+python3 engine/dm/ios/tools/sign_ipa.py import --p12 证书.p12 --profile 描述.mobileprovision --fetch-zsign
+```
+
+导入时问一次 `.p12` 密码，存在 macOS 钥匙串里。证书材料放在 `~/Library/Application Support/NX2Apple/signing/`，不进仓库。描述文件的 App ID 若是写死的单个 ID（商家证书常见），签名时会自动把 App 的 Bundle ID 换成它，与侧载工具的做法一致。随时手动签一个现成的 IPA：`python3 engine/dm/ios/tools/sign_ipa.py sign <文件.ipa>`。不想再自动签，删掉那个目录即可。
