@@ -1,0 +1,261 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Muse <muse@localhost>
+Date: Sat, 7 Nov 2026 09:04:12 +0000
+Subject: [PATCH] shader_split: spill each scan result to disk instead of
+ pickling the batch back
+
+A batch's results come back through the pool's result queue, which
+pickles the whole batch into one bytes object. One file holding
+thousands of shaders is too large for that copy and dies with
+MemoryError in _sendback_result, after every file has already been
+scanned: Hyrule Warriors: Age of Imprisonment reaches progress
+2153/2153 with 9,766 shaders and then fails, and chunk=1 does not
+help because a single file's result alone is too large to pickle.
+
+Workers now pickle each scan result to a spill directory beside the
+map as it is scanned and send back only its path, so the queue
+carries small strings. pooled() is a generator yielding results in
+job order, loading each spilled result and removing its file, and
+main() merges each result into the shader tables as it arrives
+instead of holding every file's result until the scan ends, so the
+parent keeps only the deduplicated keys. A spill failure falls back
+to the in-memory result for that job, and no spill directory falls
+back to the old behaviour entirely. The spill directory is removed
+once the scan ends, including on red().
+
+Upstream-Status: fork-only
+Reason: one file's scan result is too large for the pool's result queue to pickle, so the split dies with MemoryError after scanning everything
+Issue: LNPANDY/NX2Apple#123
+
+---
+ dm/gfx/tests/test_shader_split_progress.py |  16 ++-
+ dm/gfx/tools/shader_split.py               | 125 ++++++++++++++-------
+ 2 files changed, 99 insertions(+), 42 deletions(-)
+
+diff --git a/dm/gfx/tests/test_shader_split_progress.py b/dm/gfx/tests/test_shader_split_progress.py
+index 18df0f0..93b8eca 100644
+--- a/dm/gfx/tests/test_shader_split_progress.py
++++ b/dm/gfx/tests/test_shader_split_progress.py
+@@ -2,6 +2,8 @@
+ import concurrent.futures as cf
+ import contextlib
+ import io
++import os
++import tempfile
+ from pathlib import Path
+ import sys
+ import threading
+@@ -25,7 +27,7 @@ class PooledProgressTests(unittest.TestCase):
+                 return n
+         lines = Output()
+         with mock.patch.object(split, 'scan_file', scan), cf.ThreadPoolExecutor(4) as ex, contextlib.redirect_stdout(lines):
+-            try: results = split.pooled(ex, list(range(20)), 20)
++            try: results = list(split.pooled(ex, list(range(20)), 20))
+             finally: release.set()   # unblock the worker before the executor joins it if the scan fails
+         self.assertEqual(results, list(range(20)))   # the job order, as pool.map gave it
+         counts = [l for l in lines.getvalue().split('\n') if l.startswith('progress: ')]
+@@ -35,10 +37,20 @@ class PooledProgressTests(unittest.TestCase):
+     def test_batches_and_an_offset_count_every_job_once(self):
+         lines = io.StringIO()
+         with mock.patch.object(split, 'scan_file', lambda job: job * 2), cf.ThreadPoolExecutor(3) as ex, contextlib.redirect_stdout(lines):
+-            results = split.pooled(ex, list(range(37)), 40, start=3, chunk=16)
++            results = list(split.pooled(ex, list(range(37)), 40, start=3, chunk=16))
+         self.assertEqual(results, [j * 2 for j in range(37)])
+         self.assertEqual(lines.getvalue().split('\n')[-2], 'progress: 40/40')   # the 3 jobs before, then all 37 of these
+ 
++    def test_spilled_results_load_in_order_and_clean_up(self):
++        # A worker spills each result to disk and sends back only its path; pooled loads them in job order and removes the files.
++        def scan(job): return (f'f{job}', {job: (f'f{job}', 'ps', b'ctl', b'code')}, {(job, job + 1)}, {})
++        with tempfile.TemporaryDirectory() as d, mock.patch.object(split, 'scan_file', scan), \
++                mock.patch.object(split, 'SPILL', d), cf.ThreadPoolExecutor(2) as ex, \
++                contextlib.redirect_stdout(io.StringIO()):
++            results = list(split.pooled(ex, list(range(5)), 5, chunk=2))
++            self.assertEqual([r[0] for r in results], [f'f{j}' for j in range(5)])
++            self.assertEqual(os.listdir(d), [])
++
+ 
+ if __name__ == '__main__':
+     unittest.main()
+diff --git a/dm/gfx/tools/shader_split.py b/dm/gfx/tools/shader_split.py
+index e572bc8..a749802 100644
+--- a/dm/gfx/tools/shader_split.py
++++ b/dm/gfx/tools/shader_split.py
+@@ -56,7 +56,7 @@
+ #   With an update: give RomFS and main as comma-separated lists (base game first, e.g. data/v0/RomFS,data/v327680/RomFS); the output is the union of both versions (see main())
+ #   Unity type trees need Unity's common string table, which is taken from the first main
+ # Pair table: (vertex key, pixel key) of every BNSH variation (every Unity program); dmsh_build uses it to give vertex shaders the outputs their pixel shaders read but they do not write (see dmsh_build.py vs_pad)
+-import base64, collections, concurrent.futures as cf, glob, hashlib, json, os, re, struct, subprocess, sys, time, zlib
++import base64, collections, concurrent.futures as cf, glob, hashlib, json, os, pickle, re, shutil, struct, subprocess, sys, tempfile, time, zlib
+ from typing import NoReturn
+ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../../tools'))
+ from romfs import os, open, is_image
+@@ -2506,9 +2506,12 @@ NV_STAGES = ['vs', 'ps', 'gs', 'hs', 'ds', 'cs']   # NVN stage order
+ COMMON, TREES = None, {}   # Unity common strings and borrowed type trees (given when the pool starts)
+ ZDICTS, _ZD = {}, {}       # zstd dictionaries by ID (given when the pool starts) and their digested form in this process
+ 
+-def _pool_init(common, trees, zdicts={}):
+-    global COMMON, TREES, ZDICTS
+-    COMMON, TREES, ZDICTS = common, trees, zdicts
++SPILL = None   # set by _pool_init: the directory a pool worker spills each scan result into, so a result too large for the pool's
++_SPILL_N = 0   # result queue can still get home (scan_batch); the parent loads it back one result at a time (pooled)
++
++def _pool_init(common, trees, zdicts={}, spill=None):
++    global COMMON, TREES, ZDICTS, SPILL
++    COMMON, TREES, ZDICTS, SPILL = common, trees, zdicts, spill
+ 
+ def zs_dicts(romfs):
+     """Tears of the Kingdom compresses its RomFS files with zstd dictionaries (the frame header names one, ID 1 for the shader packages). They ship as Pack/ZsDic.pack.zs:
+@@ -3061,20 +3064,53 @@ def nso_image(path):   # an NSO's image (dm/tools/nso.py); nso.Error (a ValueErr
+     with open(path, 'rb') as f: return bytes(nso.load(f.read(), path).image)
+ 
+ def scan_batch(jobs):   # scan_file over a batch of jobs, in a pool worker
+-    return [scan_file(j) for j in jobs]
++    # A batch's results come back through the pool's result queue, which pickles the whole batch into one bytes object: one file holding
++    # thousands of shaders is too large for that copy and dies with MemoryError in _sendback_result, after every file has already been
++    # scanned (Hyrule Warriors: Age of Imprisonment: 9,766 shaders, progress 2153/2153, then the failure). Spill each result to disk as
++    # it is scanned and send back only its path, so the queue carries small strings. A spill failure falls back to the in-memory
++    # result for that job, as before.
++    global _SPILL_N
++    out = []
++    for j in jobs:
++        r = scan_file(j)
++        if SPILL:
++            try:
++                _SPILL_N += 1
++                p = os.path.join(SPILL, f'{os.getpid()}_{_SPILL_N}.pkl')
++                with open(p, 'wb') as f: pickle.dump(r, f, protocol=4)
++                out.append(p); continue
++            except OSError:
++                pass
++        out.append(r)
++    return out
++
++
++def _spilled(item):
++    """A scan result spilled to disk by its worker, loaded and its file removed; anything else passes through (no spill, or the spill failed)."""
++    if not isinstance(item, str): return item
++    with open(item, 'rb') as f: r = pickle.load(f)
++    os.unlink(item)
++    return r
+ 
+ 
+ def pooled(ex, jobs, total, start=0, chunk=1):
+-    """scan_file over jobs in the pool, the results in job order, with a 'progress: <done>/<total>' line at most twice a second (the NSP script shows it as
+-    the stage's count). The count is of the jobs finished in any order: counted in order it would stall behind one slow archive range while the others finish"""
++    """scan_file over jobs in the pool, yielding the results in job order, with a 'progress: <done>/<total>' line at most twice a second (the NSP script shows it as
++    the stage's count). The count is of the jobs finished in any order: counted in order it would stall behind one slow archive range while the others finish.
++    A generator, not a list: each result is yielded as its turn comes, so the caller can merge it and drop it instead of holding every file's shaders at
++    once, and a spilled result is loaded here and its file removed. Only the spill paths of finished batches are held meanwhile, which are small."""
+     batches = [jobs[i:i + chunk] for i in range(0, len(jobs), chunk)]
+     futures = {ex.submit(scan_batch, b): len(b) for b in batches}
++    order, landed, nxt = list(futures), {}, 0
+     done, pending, shown = start, set(futures), 0.0
+-    while pending:
+-        finished, pending = cf.wait(pending, timeout=0.5)
+-        done += sum(futures[f] for f in finished)
+-        if not pending or time.monotonic() - shown >= 0.5: print(f'progress: {done}/{total}', flush=True); shown = time.monotonic()
+-    return [r for f in futures for r in f.result()]
++    while pending or nxt < len(futures):
++        if pending:
++            finished, pending = cf.wait(pending, timeout=0.5)
++            done += sum(futures[f] for f in finished)
++            if not pending or time.monotonic() - shown >= 0.5: print(f'progress: {done}/{total}', flush=True); shown = time.monotonic()
++            for f in finished: landed[order.index(f)] = f.result()
++        while nxt in landed:
++            for item in landed.pop(nxt): yield _spilled(item)
++            nxt += 1
+ 
+ 
+ def main():
+@@ -3086,7 +3122,20 @@ def main():
+     # The first version's source column is unchanged; later versions are prefixed with their workspace directory name (e.g. v327680): /v327680/Shader/…, main@v327680. They sort after the first version, so existing rows keep their package indices.
+     romfs_v, main_v = romfs_l.split(','), main_l.split(',')
+     if len(romfs_v) != len(main_v): red(f'{len(romfs_v)} RomFS and {len(main_v)} main: they must pair one to one')
+-    files, results, common = [], [], None
++    files, common = [], None
++    keys, pairs, per_src, trees, defer, bad = {}, set(), collections.Counter(), {}, [], []
++    def absorb(rel, uniq, pr, extra):
++        """Merge one scan result into the shader tables as it arrives, instead of holding every file's result until the scan ends:
++        the parent keeps only the deduplicated keys, so a game whose per-file results together exceed memory still fits."""
++        if extra == 'defer': defer.append(rel)
++        elif isinstance(extra, dict): trees.update(extra)
++        elif isinstance(extra, tuple): bad.append(extra)
++        pairs |= pr
++        for key, v in uniq.items():
++            if key in keys:
++                if not same_shader(keys[key][2:4], v[2:4]): red(f'key {key} is the same but the control section or code area differs ({v[0]} / {keys[key][0]})')
++                continue
++            keys[key] = v; per_src[group(v[0])] += 1
+     for i, (romfs, mainnso) in enumerate(zip(romfs_v, main_v)):
+         tag = os.path.basename(os.path.dirname(os.path.abspath(romfs))) if i else ''
+         files += sorted((os.path.join(dp, f), (tag + '/' if tag else '') + os.path.relpath(os.path.join(dp, f), romfs)) for dp, _, fs in os.walk(romfs) for f in fs)
+@@ -3116,13 +3165,12 @@ def main():
+         names = sorted(f for f in os.listdir(ued) if f.endswith('.ushaderbytecode') and not f.startswith('._')) if os.path.isdir(ued) else []   # AppleDouble metadata, not decoded shader archives
+         if not names and uepak.unreal_paks(romfs, inline=False): red(f'the RomFS has Unreal paks, but there are no decoded shader code archives in {ued} (the NSP script writes them)')
+         for nm in names: found += ue_shaders(open(os.path.join(ued, nm), 'rb').read(), f'/ue_shaders/{nm}')
+-        results.append(('main', {skey(c, k): (w, s, c, k) for w, s, c, k in found}, var_pairs(found), {}))
++        absorb('main', {skey(c, k): (w, s, c, k) for w, s, c, k in found}, var_pairs(found), {})
+     for romfs in dlc_v:
+         name = os.path.basename(os.path.normpath(romfs))
+         tag = 'aoc/' + (name.removesuffix('.img') if is_image(romfs) else name)
+         files += sorted((os.path.join(dp, f), tag + '/' + os.path.relpath(os.path.join(dp, f), romfs)) for dp, _, fs in os.walk(romfs) for f in fs)
+     zdicts = {k: v for r in romfs_v + dlc_v for k, v in zs_dicts(r).items()}   # Tears of the Kingdom's zstd dictionaries (zs_dicts)
+-    keys = {}
+     # First pass: every file; Unity bundles carry type trees, and the Shader trees are collected on the way. Second pass: Unity serialized files without type trees are scanned again with the borrowed trees
+     J = int(os.environ.get('J', '8'))
+     big = [j for p, r in files for j in (linkdata_jobs(p, r) or [])]   # Three Houses' 6.9 GB DATA1.bin: one job per range of entries, not one read of the whole file
+@@ -3140,32 +3188,29 @@ def main():
+     pd_jobs, pdats = pdat_jobs(files)   # Kirby Air Riders' PDAT archives: the PMAP records in byte ranges
+     big += pak_jobs + tr_jobs + ue_jobs + bd_jobs + arc_jobs + pz_jobs + ck_jobs + cr_jobs + zp_jobs + ah_jobs + fb_jobs + pd_jobs
+     files = [(p, r) for p, r in files if not linkdata_jobs(p, r) and p not in paks and p not in trp and p not in uep and p not in bdts and p not in arcs and p not in pkzs and p not in cpks and p not in cras and p not in zips and p not in arhs and p not in fbs and p not in pdats]
+-    with cf.ProcessPoolExecutor(J, initializer=_pool_init, initargs=(common, {}, zdicts)) as ex:
+-        n = len(big) + len(files)
+-        results += pooled(ex, big, n) + pooled(ex, files, n, len(big), chunk=16)
+-    trees, defer = {}, []
+-    for rel, uniq, pr, extra in results:
+-        if extra == 'defer': defer.append(rel)
+-        elif isinstance(extra, dict): trees.update(extra)
+-    if defer:
+-        # a hash no bundle supplied takes the layout unityfs.py has for it (KNOWN_TREES); only here, so files a bundle lends a tree to keep their place in the tables (Ace Attorney's built-ins)
+-        import unityfs
+-        for k in unityfs.KNOWN_TREES: trees.setdefault(k, unityfs.known_tree(*k))
+-        byrel = {r: p for p, r in files}
+-        with cf.ProcessPoolExecutor(J, initializer=_pool_init, initargs=(common, trees, zdicts)) as ex: again = list(ex.map(scan_file, [(byrel[r], r) for r in defer]))
+-        for rel, uniq, pr, extra in again:
+-            if extra == 'defer': red(f'{rel}: Unity serialized file without type trees, and no bundle has a Shader type tree of the same hash to borrow')
+-        results = [r for r in results if r[3] != 'defer'] + again
+-    bad = [extra for *_, extra in results if isinstance(extra, tuple)]
++    # Workers spill each result beside the map, on the build drive where there is room for it; without a spill directory the
++    # in-memory results are used, as before. The directory is removed once the scan ends, including on red().
++    spill = None
++    for d in (os.path.dirname(os.path.abspath(mapout)), None):
++        try: spill = tempfile.mkdtemp(prefix='shader_split_spill_', dir=d); break
++        except OSError: continue
++    try:
++        with cf.ProcessPoolExecutor(J, initializer=_pool_init, initargs=(common, {}, zdicts, spill)) as ex:
++            n = len(big) + len(files)
++            for r in pooled(ex, big, n): absorb(*r)
++            for r in pooled(ex, files, n, len(big), chunk=16): absorb(*r)
++        if defer:
++            # a hash no bundle supplied takes the layout unityfs.py has for it (KNOWN_TREES); only here, so files a bundle lends a tree to keep their place in the tables (Ace Attorney's built-ins)
++            import unityfs
++            for k in unityfs.KNOWN_TREES: trees.setdefault(k, unityfs.known_tree(*k))
++            byrel = {r: p for p, r in files}
++            with cf.ProcessPoolExecutor(J, initializer=_pool_init, initargs=(common, trees, zdicts, spill)) as ex:
++                for r in ex.map(scan_file, [(byrel[r], r) for r in defer]):
++                    if r[3] == 'defer': red(f'{r[0]}: Unity serialized file without type trees, and no bundle has a Shader type tree of the same hash to borrow')
++                    absorb(*r)
++    finally:
++        if spill: shutil.rmtree(spill, ignore_errors=True)
+     if bad: print(f'[RED] {sum(e[2] for e in bad)} file(s) could not be read, their shaders are left out (first: {bad[0][1]})', flush=True)   # build_ipa_from_nsp.py reads this line
+-    per_src = collections.Counter(); pairs = set()
+-    for rel, uniq, pr, _ in results:
+-        pairs |= pr
+-        for key, v in uniq.items():
+-            if key in keys:
+-                if not same_shader(keys[key][2:4], v[2:4]): red(f'key {key} is the same but the control section or code area differs ({v[0]} / {keys[key][0]})')
+-                continue
+-            keys[key] = v; per_src[group(v[0])] += 1
+     prog = {(a, b) for a, b, *t in pairs if t} - pairs; pairs = {x for x in pairs if len(x) == 2}
+     sp, cover = separable_pairs(keys); pairs |= sp
+     if cover: print(f'single-stage programs: {len({v for v, _ in sp}):,} vertex shaders are paired with a cover of {len(cover)} pixel shader(s) ({" ".join(cover)})')
