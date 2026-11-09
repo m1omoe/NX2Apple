@@ -1,0 +1,88 @@
+name: Build HermesEnabler2 unsigned IPA
+
+# Mirror of pookjw/HermesEnabler (main @ 7642b58) living under HermesEnabler2/
+# on this branch. HermesEnabler2 is a watchOS-only app (WKWatchOnly,
+# WATCHOS_DEPLOYMENT_TARGET 26.0), so it builds with the watchOS SDK on the
+# newest Xcode available and is packaged as Payload/HermesEnabler2.app in an
+# IPA for later signing by the user's own signer.
+
+on:
+  push:
+    branches: [hermes-enabler]
+    paths:
+      - 'HermesEnabler2/**'
+      - '.github/workflows/hermes-enabler.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select newest Xcode
+        run: |
+          ls -d /Applications/Xcode*.app || true
+          NEWEST=$(ls -d /Applications/Xcode_*.app 2>/dev/null | sort -V | tail -1)
+          if [ -n "$NEWEST" ]; then sudo xcode-select -s "$NEWEST/Contents/Developer"; fi
+          xcodebuild -version
+          xcodebuild -showsdks | grep -iE 'watchos|iphoneos' || true
+
+      - name: Build (unsigned)
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -project HermesEnabler2/HermesEnabler2.xcodeproj \
+            -scheme HermesEnabler2 \
+            -configuration Release \
+            -destination 'generic/platform=watchOS' \
+            -derivedDataPath "$RUNNER_TEMP/dd" \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            build 2>&1 | tee "$RUNNER_TEMP/xcodebuild.log"
+
+      - name: Package IPA
+        run: |
+          APP=$(find "$RUNNER_TEMP/dd/Build/Products" -name 'HermesEnabler2.app' -type d | head -1)
+          echo "App bundle: $APP"
+          test -n "$APP"
+          # Ad-hoc sign (no identity) solely to embed the project's own
+          # entitlements into the bundle so a later signer can see/keep them.
+          # The IPA remains unsigned for installation purposes.
+          codesign --force --deep --sign - \
+            --entitlements HermesEnabler2/HermesEnabler2/HermesEnabler2.entitlements \
+            "$APP"
+          echo '--- embedded entitlements ---'
+          codesign -d --entitlements - "$APP" || true
+          echo '--- Info.plist highlights ---'
+          /usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$APP/Info.plist" || true
+          /usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$APP/Info.plist" || true
+          /usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' "$APP/Info.plist" || true
+          /usr/libexec/PlistBuddy -c 'Print :WKWatchOnly' "$APP/Info.plist" || true
+          rm -rf Payload HermesEnabler2-unsigned.ipa
+          mkdir Payload
+          cp -R "$APP" Payload/
+          zip -qry HermesEnabler2-unsigned.ipa Payload
+          ls -la HermesEnabler2-unsigned.ipa
+          unzip -l HermesEnabler2-unsigned.ipa | head -40
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: HermesEnabler2-unsigned-ipa
+          path: HermesEnabler2-unsigned.ipa
+          if-no-files-found: error
+
+      - name: Commit outputs back to branch
+        if: always()
+        run: |
+          mkdir -p build-output
+          [ -f HermesEnabler2-unsigned.ipa ] && cp HermesEnabler2-unsigned.ipa build-output/
+          [ -f "$RUNNER_TEMP/xcodebuild.log" ] && cp "$RUNNER_TEMP/xcodebuild.log" build-output/xcodebuild.log
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add build-output
+          if git diff --cached --quiet; then echo 'nothing to commit'; exit 0; fi
+          git commit -m 'HermesEnabler2 build output [skip ci]'
+          git push origin HEAD:hermes-enabler
