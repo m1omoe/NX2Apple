@@ -1,0 +1,13 @@
+Command line invocation:
+    /Applications/Xcode_26.6.app/Contents/Developer/usr/bin/xcodebuild -project HermesEnabler2/HermesEnabler2.xcodeproj -scheme HermesEnabler2 -configuration Release -destination generic/platform=watchOS -derivedDataPath /Users/runner/work/_temp/dd CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY= build
+
+Build settings from command line:
+    CODE_SIGN_IDENTITY = 
+    CODE_SIGNING_ALLOWED = NO
+    CODE_SIGNING_REQUIRED = NO
+
+2026-11-09 23:59:22.913 xcodebuild[1291:7143] Writing error result bundle to /var/folders/h5/t85nd63d71x27_8gl5gw3l_w0000gn/T/ResultBundle_2026-09-11_23-59-0022.xcresult
+xcodebuild: error: Unable to read project 'HermesEnabler2.xcodeproj' from folder '/Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2'.
+	Reason: The project ‘HermesEnabler2’ cannot be opened because it is in a future Xcode project file format (110). Adjust the project format using a compatible version of Xcode to allow it to be opened by this version of Xcode.
+
+
