@@ -6,8 +6,905 @@ Build settings from command line:
     CODE_SIGNING_ALLOWED = NO
     CODE_SIGNING_REQUIRED = NO
 
-2026-11-09 23:59:22.913 xcodebuild[1291:7143] Writing error result bundle to /var/folders/h5/t85nd63d71x27_8gl5gw3l_w0000gn/T/ResultBundle_2026-09-11_23-59-0022.xcresult
-xcodebuild: error: Unable to read project 'HermesEnabler2.xcodeproj' from folder '/Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2'.
-	Reason: The project ‘HermesEnabler2’ cannot be opened because it is in a future Xcode project file format (110). Adjust the project format using a compatible version of Xcode to allow it to be opened by this version of Xcode.
+note: Using codesigning identity override: 
+ComputePackagePrebuildTargetDependencyGraph
 
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (1 target)
+    Target 'HermesEnabler2' in project 'HermesEnabler2' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64 -isysroot /Applications/Xcode_26.6.app/Contents/Developer/Platforms/WatchOS.platform/Developer/SDKs/WatchOS26.5.sdk -x objective-c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode_26.6.app/Contents/Developer/Platforms/WatchOS.platform/Developer/SDKs/WatchOS26.5.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64 -isysroot /Applications/Xcode_26.6.app/Contents/Developer/Platforms/WatchOS.platform/Developer/SDKs/WatchOS26.5.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode_26.6.app/Contents/Developer/usr/bin/actool --print-asset-tag-combinations --output-format xml1 /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/Assets.xcassets
+
+ExecuteExternalTool /Applications/Xcode_26.6.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+ExecuteExternalTool /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64_32 -isysroot /Applications/Xcode_26.6.app/Contents/Developer/Platforms/WatchOS.platform/Developer/SDKs/WatchOS26.5.sdk -x objective-c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64_32 -isysroot /Applications/Xcode_26.6.app/Contents/Developer/Platforms/WatchOS.platform/Developer/SDKs/WatchOS26.5.sdk -x c -c /dev/null
+
+Build description signature: 18a846e52fbd5882c05ab7f4765ef9dc
+Build description path: /Users/runner/work/_temp/dd/Build/Intermediates.noindex/XCBuildData/18a846e52fbd5882c05ab7f4765ef9dc.xcbuilddata
+CreateBuildDirectory /Users/runner/work/_temp/dd/Build/Products
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2.xcodeproj
+    builtin-create-build-directory /Users/runner/work/_temp/dd/Build/Products
+
+CreateBuildDirectory /Users/runner/work/_temp/dd/Build/Intermediates.noindex
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2.xcodeproj
+    builtin-create-build-directory /Users/runner/work/_temp/dd/Build/Intermediates.noindex
+
+ClangStatCache /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode_26.6.app/Contents/Developer/Platforms/WatchOS.platform/Developer/SDKs/WatchOS26.5.sdk /Users/runner/work/_temp/dd/SDKStatCaches.noindex/watchos26.5-23T570-688ef53f1462e2c8f657fdc38a81448f6f39cd4ed9f891394c9a6a463e5c5cb7.sdkstatcache
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2.xcodeproj
+    /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode_26.6.app/Contents/Developer/Platforms/WatchOS.platform/Developer/SDKs/WatchOS26.5.sdk -o /Users/runner/work/_temp/dd/SDKStatCaches.noindex/watchos26.5-23T570-688ef53f1462e2c8f657fdc38a81448f6f39cd4ed9f891394c9a6a463e5c5cb7.sdkstatcache
+
+WriteAuxiliaryFile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2-93fffa141c70c8c7282531a789c94535-VFS-watchos/all-product-headers.yaml
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2.xcodeproj
+    write-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2-93fffa141c70c8c7282531a789c94535-VFS-watchos/all-product-headers.yaml
+
+CreateBuildDirectory /Users/runner/work/_temp/dd/Build/Products/Release-watchos
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2.xcodeproj
+    builtin-create-build-directory /Users/runner/work/_temp/dd/Build/Products/Release-watchos
+
+CreateBuildDirectory /Users/runner/work/_temp/dd/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2.xcodeproj
+    builtin-create-build-directory /Users/runner/work/_temp/dd/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+
+CreateBuildDirectory /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2.xcodeproj
+    builtin-create-build-directory /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules
+
+CreateBuildDirectory /Users/runner/work/_temp/dd/Build/Intermediates.noindex/EagerLinkingTBDs/Release-watchos
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2.xcodeproj
+    builtin-create-build-directory /Users/runner/work/_temp/dd/Build/Intermediates.noindex/EagerLinkingTBDs/Release-watchos
+
+WriteAuxiliaryFile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/empty-HermesEnabler2.plist (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    write-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/empty-HermesEnabler2.plist
+
+WriteAuxiliaryFile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/e6072d4f65d7061329687fe24e3d63a7-common-args.resp (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    write-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/e6072d4f65d7061329687fe24e3d63a7-common-args.resp
+'-std=gnu17' -fobjc-arc -fobjc-weak -fmodules -gmodules '-fmodules-cache-path=/Users/runner/work/_temp/dd/ModuleCache.noindex' -fpascal-strings -Os -fno-common '-DNS_BLOCK_ASSERTIONS=1' '-DOBJC_OLD_DISPATCH_PROTOTYPES=0' -g '-fvisibility=hidden' -iquote /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-generated-files.hmap -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-own-target-headers.hmap -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-all-target-headers.hmap -iquote /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-project-headers.hmap -I/Users/runner/work/_temp/dd/Build/Products/Release-watchos/include -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources-normal/arm64_32 -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources/arm64_32 -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources -F/Users/runner/work/_temp/dd/Build/Products/Release-watchos
+
+WriteAuxiliaryFile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2_const_extract_protocols.json (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    write-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2_const_extract_protocols.json
+
+WriteAuxiliaryFile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.SwiftFileList (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    write-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.SwiftFileList
+
+WriteAuxiliaryFile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.SwiftConstValuesFileList (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    write-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.LinkFileList (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    write-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.LinkFileList
+
+WriteAuxiliaryFile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2-OutputFileMap.json (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    write-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2-OutputFileMap.json
+
+WriteAuxiliaryFile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/e6072d4f65d7061329687fe24e3d63a7-common-args.resp (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    write-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/e6072d4f65d7061329687fe24e3d63a7-common-args.resp
+'-std=gnu17' -fobjc-arc -fobjc-weak -fmodules -gmodules '-fmodules-cache-path=/Users/runner/work/_temp/dd/ModuleCache.noindex' -fpascal-strings -Os -fno-common '-DNS_BLOCK_ASSERTIONS=1' '-DOBJC_OLD_DISPATCH_PROTOTYPES=0' -g '-fvisibility=hidden' -iquote /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-generated-files.hmap -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-own-target-headers.hmap -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-all-target-headers.hmap -iquote /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-project-headers.hmap -I/Users/runner/work/_temp/dd/Build/Products/Release-watchos/include -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources-normal/arm64 -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources/arm64 -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources -F/Users/runner/work/_temp/dd/Build/Products/Release-watchos
+
+WriteAuxiliaryFile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2_const_extract_protocols.json (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    write-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2_const_extract_protocols.json
+
+WriteAuxiliaryFile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.SwiftFileList (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    write-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.SwiftFileList
+
+WriteAuxiliaryFile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.SwiftConstValuesFileList (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    write-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.LinkFileList (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    write-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.LinkFileList
+
+WriteAuxiliaryFile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2-OutputFileMap.json (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    write-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2-OutputFileMap.json
+
+WriteAuxiliaryFile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2.hmap (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    write-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2.hmap
+
+WriteAuxiliaryFile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2.DependencyStaticMetadataFileList (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    write-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2.DependencyStaticMetadataFileList
+
+WriteAuxiliaryFile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2.DependencyMetadataFileList (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    write-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2.DependencyMetadataFileList
+
+WriteAuxiliaryFile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-project-headers.hmap (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    write-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-project-headers.hmap
+
+WriteAuxiliaryFile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-own-target-headers.hmap (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    write-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-own-target-headers.hmap
+
+WriteAuxiliaryFile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-generated-files.hmap (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    write-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-generated-files.hmap
+
+WriteAuxiliaryFile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-all-target-headers.hmap (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    write-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-all-target-headers.hmap
+
+WriteAuxiliaryFile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-all-non-framework-target-headers.hmap (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    write-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-all-non-framework-target-headers.hmap
+
+MkDir /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    /bin/mkdir -p /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app
+
+MkDir /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/assetcatalog_output/unthinned (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    /bin/mkdir -p /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/assetcatalog_output/unthinned
+
+MkDir /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/assetcatalog_output/thinned (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    /bin/mkdir -p /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/assetcatalog_output/thinned
+
+GenerateAssetSymbols /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/Assets.xcassets (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    /Applications/Xcode_26.6.app/Contents/Developer/usr/bin/actool /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/Assets.xcassets --compile /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app --output-format human-readable-text --notices --warnings --export-dependency-info /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/assetcatalog_dependencies --output-partial-info-plist /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/assetcatalog_generated_info.plist --app-icon AppIcon --accent-color AccentColor --compress-pngs --enable-on-demand-resources YES --development-region en --target-device watch --minimum-deployment-target 26.0 --platform watchos --bundle-identifier com.pookjw.MyApp.watchkitapp --generate-swift-asset-symbols /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources/GeneratedAssetSymbols.swift --generate-objc-asset-symbols /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources/GeneratedAssetSymbols.h --generate-asset-symbol-index /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/* com.apple.actool.compilation-results */
+/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources/GeneratedAssetSymbols.h
+/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources/GeneratedAssetSymbols.swift
+
+
+CpResource /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app/respring.html /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/respring.html (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/respring.html /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app
+
+CpResource /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app/Gester-LICENSE.txt /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/Gester-LICENSE.txt (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/Gester-LICENSE.txt /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app
+
+CompileAssetCatalogVariant thinned /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/Assets.xcassets (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    /Applications/Xcode_26.6.app/Contents/Developer/usr/bin/actool /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/Assets.xcassets --compile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/assetcatalog_output/thinned --output-format human-readable-text --notices --warnings --export-dependency-info /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/assetcatalog_dependencies_thinned --output-partial-info-plist /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/assetcatalog_generated_info.plist_thinned --app-icon AppIcon --accent-color AccentColor --compress-pngs --enable-on-demand-resources YES --development-region en --target-device watch --minimum-deployment-target 26.0 --platform watchos
+/* com.apple.actool.compilation-results */
+/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/assetcatalog_generated_info.plist_thinned
+
+
+LinkAssetCatalog /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/Assets.xcassets (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    builtin-linkAssetCatalog --thinned /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/assetcatalog_output/thinned --thinned-dependencies /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/assetcatalog_dependencies_thinned --thinned-info-plist-content /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/assetcatalog_generated_info.plist_thinned --unthinned /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/assetcatalog_output/unthinned --unthinned-dependencies /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/assetcatalog_dependencies_unthinned --unthinned-info-plist-content /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/assetcatalog_generated_info.plist_unthinned --output /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app --plist-output /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/assetcatalog_generated_info.plist
+
+ProcessInfoPlistFile /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app/Info.plist /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/empty-HermesEnabler2.plist (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    builtin-infoPlistUtility /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/empty-HermesEnabler2.plist -producttype com.apple.product-type.application -genpkginfo /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app/PkgInfo -expandbuildsettings -format binary -platform watchos -additionalcontentfile /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/assetcatalog_generated_info.plist -o /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app/Info.plist
+
+SwiftDriver HermesEnabler2 normal arm64 com.apple.xcode.tools.swift.compiler (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    builtin-SwiftDriver -- /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name HermesEnabler2 -O -whole-module-optimization @/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.SwiftFileList -default-isolation\=MainActor -enable-bare-slash-regex -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.6.app/Contents/Developer/Platforms/WatchOS.platform/Developer/SDKs/WatchOS26.5.sdk -target arm64-apple-watchos26.0 -g -module-cache-path /Users/runner/work/_temp/dd/ModuleCache.noindex -Xfrontend -serialize-debugging-options -swift-version 5 -I /Users/runner/work/_temp/dd/Build/Products/Release-watchos -F /Users/runner/work/_temp/dd/Build/Products/Release-watchos -emit-localized-strings -emit-localized-strings-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64 -c -num-threads 3 -Xcc -ivfsstatcache -Xcc /Users/runner/work/_temp/dd/SDKStatCaches.noindex/watchos26.5-23T570-688ef53f1462e2c8f657fdc38a81448f6f39cd4ed9f891394c9a6a463e5c5cb7.sdkstatcache -output-file-map /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/_temp/dd/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/_temp/dd/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/_temp/dd/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-generated-files.hmap -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-own-target-headers.hmap -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-project-headers.hmap -Xcc -I/Users/runner/work/_temp/dd/Build/Products/Release-watchos/include -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources/arm64 -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2-Swift.h -import-objc-header /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/Bridging-Header.h -working-directory /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2 -no-emit-module-separately-wmo
+
+SwiftDriver HermesEnabler2 normal arm64_32 com.apple.xcode.tools.swift.compiler (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    builtin-SwiftDriver -- /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name HermesEnabler2 -O -whole-module-optimization @/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.SwiftFileList -default-isolation\=MainActor -enable-bare-slash-regex -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.6.app/Contents/Developer/Platforms/WatchOS.platform/Developer/SDKs/WatchOS26.5.sdk -target arm64_32-apple-watchos26.0 -g -module-cache-path /Users/runner/work/_temp/dd/ModuleCache.noindex -Xfrontend -serialize-debugging-options -swift-version 5 -I /Users/runner/work/_temp/dd/Build/Products/Release-watchos -F /Users/runner/work/_temp/dd/Build/Products/Release-watchos -emit-localized-strings -emit-localized-strings-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32 -c -num-threads 3 -Xcc -ivfsstatcache -Xcc /Users/runner/work/_temp/dd/SDKStatCaches.noindex/watchos26.5-23T570-688ef53f1462e2c8f657fdc38a81448f6f39cd4ed9f891394c9a6a463e5c5cb7.sdkstatcache -output-file-map /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/_temp/dd/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/_temp/dd/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/_temp/dd/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-generated-files.hmap -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-own-target-headers.hmap -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-project-headers.hmap -Xcc -I/Users/runner/work/_temp/dd/Build/Products/Release-watchos/include -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources-normal/arm64_32 -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources/arm64_32 -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2-Swift.h -import-objc-header /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/Bridging-Header.h -working-directory /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2 -no-emit-module-separately-wmo
+
+SwiftDriver\ Compilation HermesEnabler2 normal arm64 com.apple.xcode.tools.swift.compiler (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    builtin-Swift-Compilation -- /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name HermesEnabler2 -O -whole-module-optimization @/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.SwiftFileList -default-isolation\=MainActor -enable-bare-slash-regex -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.6.app/Contents/Developer/Platforms/WatchOS.platform/Developer/SDKs/WatchOS26.5.sdk -target arm64-apple-watchos26.0 -g -module-cache-path /Users/runner/work/_temp/dd/ModuleCache.noindex -Xfrontend -serialize-debugging-options -swift-version 5 -I /Users/runner/work/_temp/dd/Build/Products/Release-watchos -F /Users/runner/work/_temp/dd/Build/Products/Release-watchos -emit-localized-strings -emit-localized-strings-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64 -c -num-threads 3 -Xcc -ivfsstatcache -Xcc /Users/runner/work/_temp/dd/SDKStatCaches.noindex/watchos26.5-23T570-688ef53f1462e2c8f657fdc38a81448f6f39cd4ed9f891394c9a6a463e5c5cb7.sdkstatcache -output-file-map /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/_temp/dd/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/_temp/dd/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/_temp/dd/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-generated-files.hmap -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-own-target-headers.hmap -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-project-headers.hmap -Xcc -I/Users/runner/work/_temp/dd/Build/Products/Release-watchos/include -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources/arm64 -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2-Swift.h -import-objc-header /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/Bridging-Header.h -working-directory /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2 -no-emit-module-separately-wmo
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_stdbool-CC9R6WU24348OD6BRVJ21PFZD.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/SwiftShims-3YIGHRNN1IVWH9M0VDEBG93FR.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/ptrauth-F2HANA0CT2DSSVIUZIFHXQMLF.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_stdbool-8XIN9X651DTRE6NYTGSN9PGF5.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/ptrauth-AZVNOO4V2LUYX142C1UYEUYGF.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/SwiftShims-DM3VXY33XOPTXF31XQ1BVPDUW.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/_SwiftConcurrencyShims-E9JIMJJRMU6QPUYVLT0QCTUWN.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_stddef-5MJQAD7UCXBWZWYLAH2PGLRPR.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_stdarg-9QYCJBLSODU3ZGDZN3E6JI8IC.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/_AvailabilityInternal-1C1UIUBVSW4DNIIL7CKP0IFVV.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/DeveloperToolsSupport-7YN27N5CYD2UVQT4WUJXTBOB8.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_stddef-1IURPL0AQC07FC6GCO96XSYOT.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/ptrcheck-2B3RJT5E0CKAJNX0DH4FQQFGP.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_float-9YRRM3E18DOI5I23T84229OM7.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_float-ES694YVX3GE6W1IBOCQ2P1DKS.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/_SwiftConcurrencyShims-BCE8Y2ZPJV3YVK9PE9MTT2E28.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/_DarwinFoundation1-EZHIZ9AFKO9030CDR0KACTZF2.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_stdarg-BIWCON7MW3SQXXAMGTD7JO0XL.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/DeveloperToolsSupport-69ZGQGM0I216KRFU6LY0V0R58.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/ptrcheck-7BUDNI38J5B30KD6KIR8QDB18.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/_AvailabilityInternal-45ZGB7W2FGOT00EPPAA79YTAY.pcm
+
+SwiftDriver\ Compilation HermesEnabler2 normal arm64_32 com.apple.xcode.tools.swift.compiler (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    builtin-Swift-Compilation -- /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name HermesEnabler2 -O -whole-module-optimization @/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.SwiftFileList -default-isolation\=MainActor -enable-bare-slash-regex -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.6.app/Contents/Developer/Platforms/WatchOS.platform/Developer/SDKs/WatchOS26.5.sdk -target arm64_32-apple-watchos26.0 -g -module-cache-path /Users/runner/work/_temp/dd/ModuleCache.noindex -Xfrontend -serialize-debugging-options -swift-version 5 -I /Users/runner/work/_temp/dd/Build/Products/Release-watchos -F /Users/runner/work/_temp/dd/Build/Products/Release-watchos -emit-localized-strings -emit-localized-strings-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32 -c -num-threads 3 -Xcc -ivfsstatcache -Xcc /Users/runner/work/_temp/dd/SDKStatCaches.noindex/watchos26.5-23T570-688ef53f1462e2c8f657fdc38a81448f6f39cd4ed9f891394c9a6a463e5c5cb7.sdkstatcache -output-file-map /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/_temp/dd/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/_temp/dd/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/_temp/dd/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-generated-files.hmap -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-own-target-headers.hmap -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-project-headers.hmap -Xcc -I/Users/runner/work/_temp/dd/Build/Products/Release-watchos/include -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources-normal/arm64_32 -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources/arm64_32 -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2-Swift.h -import-objc-header /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/Bridging-Header.h -working-directory /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2 -no-emit-module-separately-wmo
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_limits-A6PG81Y4Q9VW1IGJQID08DNUE.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/_DarwinFoundation2-9BRYX0ADC23BT9CC8T56BA253.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/_DarwinFoundation1-EFOXZG77UVLKOARA28677LPNI.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_limits-750X4PV8FMP4WGXSKR5UW7BVO.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/_DarwinFoundation2-70MD35X62P8ZXX2NHRCJF3MGS.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_stdint-EPB95G5THJ90BDS63CGJ18A69.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_tgmath-76PCCV6FWW1L41UGWLO1857RU.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_stdatomic-DQRMLNQC2GWIG1D0500LHM82U.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/sys_types-3TRHH5U8CWKHRR7N3D67BFZ35.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/_DarwinFoundation3-U69REUXM9AJ1KDZL8RHHJ2PF.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_intrinsics-91PPVIEGW2MDPS18R54JY2W5X.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/sys_types-6UYKICIR42CUNW0RVKV3CTIQV.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_stdint-ARNAH2HI26NANIJVRR2NBMG75.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_tgmath-3Q2V3NC1HZ12IJYZJBB7JDDLW.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_inttypes-A9AH3FZ54I2RFUUG3DLJCUSGZ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_stdatomic-XFYSPQFV1WFIOB5Q6KD5086E.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/_DarwinFoundation3-2Q9AFU1FS70VN66ZEZ7XJ7ZZ4.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_intrinsics-2DW1MAORZKH1XY2D6UANUCGQE.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/Darwin-3HIKM70O1RKF75MP77JIJEJXX.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_inttypes-BQP585X51XH7YG4AUAA27LFQ0.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/simd-EL29G22B4NWG4QGUGO6FGQ2KQ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/Darwin-EG8OM779Z50BKSQ8METHDK1H0.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/simd-CVCKJALWL322KMVIUEISUJBHR.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/ObjectiveC-24XVM7D2PU69EV4EN2JYYC5IG.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/ObjectiveC-68EYWFR5JQUGLYNJYXX5VDF1T.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/os_object-BBMZ7CJQ5MOAY31L7NS2N5YWB.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/os_object-CDLIRNWOVUJ5BQ4JCR4DS8Y70.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/Spatial-D2XPGV171DA9UNDPE054CC59L.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/os_workgroup-NW2OGC2PUYOKEV9HJC3I726M.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/os_workgroup-DVFQB2SCK1EYV67XTM7O0EXSX.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/Dispatch-5UYCWSFHSPERNG8JEJN1JT1CL.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/Dispatch-3O6A4NH8PPR2IV8VQXG0HPS5S.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreFoundation-CPH2V525OP6E0G7C7ME6CC6RY.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreFoundation-2WU1XR5RII9GBGFFWJT810S5B.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/Security-7AQCFXLRNKW6DSZPJ7RWORVB5.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/Spatial-59U4OMCKJMK3K8NH9EKIC4RK8.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreGraphics-ESCN3NCRWQFDXYD4ZNXMDVFKG.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/XPC-9NBGEZWP4J8QCUKA9KCKOIM2Q.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/Security-43BN1GLKC4HXESP7IPIZ75HNB.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreVideo-54BM930JWWU8R6XG81FOQ31WA.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreText-6RPL7DFHMG16UER3NU5880N7F.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/XPC-31K1L5K02XVQN3I24AYG06GZI.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/Foundation-3K4CSEGBWVI0W5U37KCYCU58T.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/MachO-335GNHJAUYNC91AX25AGY9DDA.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/Foundation-D3JV5NLUSD8CWS4VBB4QWEOJF.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/MachO-CYR1QYC8J7V5QS3CELWIC9X9Z.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/os-6THEMQ2FCSDDBOAJ97TI0C7ET.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/os-A6IXHX7YMTTLBJYWMEQD91BIT.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreGraphics-5LO3E3XWF1MY9RIOVOL71LEMH.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreVideo-C5HMY3XRE2E6BZ12XOPWPVQ2T.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreText-HLE3EKYOTXX3Y0GN2BH8USLC.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/Symbols-BGU02MMOI2RIWJJDAFSLMH69E.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/UIUtilities-6RX1WZ9W4RTOO35N452FNMMBQ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/UserNotifications-6NHW108F2L83GZ0C5XIZX26XG.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/QuartzCore-BWCOPWFTLR5OQ44VEUXA1PKQ8.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/_LocationEssentials-B1Q9EMFR0VV9JN105SMKP2YN3.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/DataDetection-C0LPANIVJ2KPN3U7CPKJJFF4X.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/_LocationEssentials-A0UPFV1Y071FQQCM7OYFXEDQ2.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/UserNotifications-4HDRJ9GMWEZIL0WLDKLMUNMAK.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/SceneKit-TZF13TQXKA0TLQQLTB1IP68Z.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/UIKit-C0FXNE75TRS33FFIRRZL883AL.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreLocation-D4WZ34JL1LBPKU5LLOYQ3MGXW.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/SwiftUICore-9D5Z1FH33S78GYLDAAFZKUVM4.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/QuartzCore-5U0ERLQSIKPSERJEQEYJR8ZI2.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/DataDetection-1U7IY4NUHDQUSU209OQZ2NB99.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/OSLog-7RVCTYEZSUK91MBQ97XC2M4DK.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/Accessibility-ESZIC2XA3CU773RYV0LKEY5JR.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/UIUtilities-50PTM6P34F62J43GM28RSHGYN.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/Symbols-3SJ4ZDNWLKO586CEMLIR7GLA7.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/Accessibility-672PGEGR7PPZQAV1LHWYRNYZF.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/SwiftUICore-1ZMDJBGBKZAOZ7XWITUZJD5FY.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/UIKit-5TZ4MJZOD2U99SNX7X8XSPC06.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/OSLog-47KV1NN2KZA6JQHRNYPZ361UQ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreTransferable-A29S9LXA6QVA47CHMDJQAPYXR.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreData-D8GDE8A4N7G9RWR4F4QZTTH0U.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreTransferable-9RMA32NFHOVD89K8DR60DIPSK.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/UniformTypeIdentifiers-7UWU40JN40WD8USRVNFGRGE3H.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreData-A3ZHFS55YNXRGPAEH1BRC1DY3.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/SceneKit-9Y3GJCX64TDUS3BPHO8FFSHFN.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreLocation-9YWJWDKQO90MHOS8UZKYGN46S.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/HomeKit-2C0JD5I7S3OF4MPBPW3TBV9MW.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/UniformTypeIdentifiers-EJRO6FKPF9SELV1VP7U61B4FM.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/MapKit-17S5WMO7A4PROWUY8XL6S8YUT.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/MapKit-671MILNILZ4DDUIMTKD15WMAF.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/HomeKit-E7OTJD6KNQH6412YYI2QAXN8H.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/WatchKit-3SNI2SSML1YEO9YNBR74H9L6P.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/WatchKit-8VUX2GULTDX1DCQUYGHG8FU0A.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/runner/work/_temp/dd/ModuleCache.noindex/SwiftUI-1RF5UNIH3BLTO2WK1N0IBOAL1.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64_32 /Users/runner/work/_temp/dd/ModuleCache.noindex/SwiftUI-CWZO3X1RMMCWS8HDSAORKR377.pcm
+
+SwiftGeneratePch normal arm64 Compiling\ bridging\ header (in target 'HermesEnabler2' from project 'HermesEnabler2')
+
+SwiftGeneratePch normal arm64_32 Compiling\ bridging\ header (in target 'HermesEnabler2' from project 'HermesEnabler2')
+
+SwiftDriverJobDiscovery normal arm64 Compiling bridging header (in target 'HermesEnabler2' from project 'HermesEnabler2')
+
+SwiftCompile normal arm64 Compiling\ ContentView.swift,\ HermesEnabler2App.swift,\ GeneratedAssetSymbols.swift /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/ContentView.swift /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/HermesEnabler2App.swift /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources/GeneratedAssetSymbols.swift /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/GeoToolbox.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/QuartzCore.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/_Concurrency.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/MapKit.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/Symbols.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/_DarwinFoundation2.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/DeveloperToolsSupport.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/CoreLocation.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/CoreData.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/Spatial.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/Observation.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/_DarwinFoundation1.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/os.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/_Builtin_float.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/simd.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/CoreTransferable.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/CoreGraphics.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/DataDetection.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/SceneKit.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/_DarwinFoundation3.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/_StringProcessing.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/SwiftUI.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/CoreText.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/CoreVideo.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/UniformTypeIdentifiers.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/Combine.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/System.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/Foundation.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/UIKit.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/Dispatch.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/XPC.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/HomeKit.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/Accessibility.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/ObjectiveC.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/Darwin.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/OSLog.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/CoreFoundation.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/Swift.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/SwiftUICore.swiftmodule/arm64e-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/WatchKit.swiftmodule/arm64e-apple-watchos.swiftmodule /Users/runner/work/_temp/dd/ModuleCache.noindex/Darwin-EG8OM779Z50BKSQ8METHDK1H0.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/os-A6IXHX7YMTTLBJYWMEQD91BIT.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_DarwinFoundation2-70MD35X62P8ZXX2NHRCJF3MGS.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/SceneKit-9Y3GJCX64TDUS3BPHO8FFSHFN.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/UniformTypeIdentifiers-EJRO6FKPF9SELV1VP7U61B4FM.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/ptrcheck-7BUDNI38J5B30KD6KIR8QDB18.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/DataDetection-C0LPANIVJ2KPN3U7CPKJJFF4X.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/SwiftUI-1RF5UNIH3BLTO2WK1N0IBOAL1.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_intrinsics-2DW1MAORZKH1XY2D6UANUCGQE.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/sys_types-6UYKICIR42CUNW0RVKV3CTIQV.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_stddef-1IURPL0AQC07FC6GCO96XSYOT.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/ptrauth-F2HANA0CT2DSSVIUZIFHXQMLF.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/ObjectiveC-68EYWFR5JQUGLYNJYXX5VDF1T.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/Accessibility-672PGEGR7PPZQAV1LHWYRNYZF.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/DeveloperToolsSupport-7YN27N5CYD2UVQT4WUJXTBOB8.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_inttypes-BQP585X51XH7YG4AUAA27LFQ0.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/Dispatch-3O6A4NH8PPR2IV8VQXG0HPS5S.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/simd-CVCKJALWL322KMVIUEISUJBHR.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_AvailabilityInternal-45ZGB7W2FGOT00EPPAA79YTAY.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/SwiftUICore-9D5Z1FH33S78GYLDAAFZKUVM4.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreVideo-C5HMY3XRE2E6BZ12XOPWPVQ2T.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/Spatial-59U4OMCKJMK3K8NH9EKIC4RK8.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/HomeKit-2C0JD5I7S3OF4MPBPW3TBV9MW.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_stdint-ARNAH2HI26NANIJVRR2NBMG75.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/WatchKit-3SNI2SSML1YEO9YNBR74H9L6P.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_tgmath-3Q2V3NC1HZ12IJYZJBB7JDDLW.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/XPC-9NBGEZWP4J8QCUKA9KCKOIM2Q.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_SwiftConcurrencyShims-BCE8Y2ZPJV3YVK9PE9MTT2E28.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreGraphics-5LO3E3XWF1MY9RIOVOL71LEMH.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_stdbool-CC9R6WU24348OD6BRVJ21PFZD.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/MachO-CYR1QYC8J7V5QS3CELWIC9X9Z.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/Symbols-BGU02MMOI2RIWJJDAFSLMH69E.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_LocationEssentials-B1Q9EMFR0VV9JN105SMKP2YN3.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/UIUtilities-6RX1WZ9W4RTOO35N452FNMMBQ.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_DarwinFoundation3-2Q9AFU1FS70VN66ZEZ7XJ7ZZ4.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/Security-43BN1GLKC4HXESP7IPIZ75HNB.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/UserNotifications-6NHW108F2L83GZ0C5XIZX26XG.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreTransferable-A29S9LXA6QVA47CHMDJQAPYXR.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/UIKit-C0FXNE75TRS33FFIRRZL883AL.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_limits-750X4PV8FMP4WGXSKR5UW7BVO.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/QuartzCore-BWCOPWFTLR5OQ44VEUXA1PKQ8.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreFoundation-2WU1XR5RII9GBGFFWJT810S5B.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/os_workgroup-DVFQB2SCK1EYV67XTM7O0EXSX.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreLocation-9YWJWDKQO90MHOS8UZKYGN46S.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/os_object-CDLIRNWOVUJ5BQ4JCR4DS8Y70.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_stdatomic-XFYSPQFV1WFIOB5Q6KD5086E.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_float-9YRRM3E18DOI5I23T84229OM7.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreText-HLE3EKYOTXX3Y0GN2BH8USLC.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/OSLog-47KV1NN2KZA6JQHRNYPZ361UQ.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/MapKit-17S5WMO7A4PROWUY8XL6S8YUT.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreData-A3ZHFS55YNXRGPAEH1BRC1DY3.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_stdarg-BIWCON7MW3SQXXAMGTD7JO0XL.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/Foundation-3K4CSEGBWVI0W5U37KCYCU58T.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/SwiftShims-3YIGHRNN1IVWH9M0VDEBG93FR.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_DarwinFoundation1-EFOXZG77UVLKOARA28677LPNI.pcm /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2-dependencies-1.json /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2-primary-Bridging-header.pch (in target 'HermesEnabler2' from project 'HermesEnabler2')
+
+CompileSwift normal arm64 (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    
+
+SwiftDriverJobDiscovery normal arm64_32 Compiling bridging header (in target 'HermesEnabler2' from project 'HermesEnabler2')
+
+SwiftCompile normal arm64_32 Compiling\ ContentView.swift,\ HermesEnabler2App.swift,\ GeneratedAssetSymbols.swift /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/ContentView.swift /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/HermesEnabler2App.swift /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources/GeneratedAssetSymbols.swift /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/simd.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/DeveloperToolsSupport.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/Accessibility.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/Spatial.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/_StringProcessing.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/_DarwinFoundation2.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/System.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/HomeKit.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/Symbols.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/ObjectiveC.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/MapKit.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/GeoToolbox.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/CoreVideo.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/CoreData.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/SwiftUICore.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/UniformTypeIdentifiers.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/_DarwinFoundation1.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/CoreText.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/QuartzCore.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/UIKit.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/Swift.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/Dispatch.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/_DarwinFoundation3.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/Combine.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/CoreTransferable.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/Observation.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/DataDetection.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/SceneKit.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/WatchKit.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/XPC.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/OSLog.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/SwiftUI.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/CoreLocation.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/os.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/_Concurrency.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/Darwin.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/CoreGraphics.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/_Builtin_float.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/CoreFoundation.swiftmodule/arm64_32-apple-watchos.swiftmodule /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos/prebuilt-modules/26.5/Foundation.swiftmodule/arm64_32-apple-watchos.swiftmodule /Users/runner/work/_temp/dd/ModuleCache.noindex/MapKit-671MILNILZ4DDUIMTKD15WMAF.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_DarwinFoundation1-EZHIZ9AFKO9030CDR0KACTZF2.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/Foundation-D3JV5NLUSD8CWS4VBB4QWEOJF.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/os_object-BBMZ7CJQ5MOAY31L7NS2N5YWB.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_AvailabilityInternal-1C1UIUBVSW4DNIIL7CKP0IFVV.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/simd-EL29G22B4NWG4QGUGO6FGQ2KQ.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/SwiftUI-CWZO3X1RMMCWS8HDSAORKR377.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_DarwinFoundation2-9BRYX0ADC23BT9CC8T56BA253.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/DeveloperToolsSupport-69ZGQGM0I216KRFU6LY0V0R58.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/OSLog-7RVCTYEZSUK91MBQ97XC2M4DK.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_stdatomic-DQRMLNQC2GWIG1D0500LHM82U.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_LocationEssentials-A0UPFV1Y071FQQCM7OYFXEDQ2.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/Security-7AQCFXLRNKW6DSZPJ7RWORVB5.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/UserNotifications-4HDRJ9GMWEZIL0WLDKLMUNMAK.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/Dispatch-5UYCWSFHSPERNG8JEJN1JT1CL.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreVideo-54BM930JWWU8R6XG81FOQ31WA.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/UIUtilities-50PTM6P34F62J43GM28RSHGYN.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/HomeKit-E7OTJD6KNQH6412YYI2QAXN8H.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_stdarg-9QYCJBLSODU3ZGDZN3E6JI8IC.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreGraphics-ESCN3NCRWQFDXYD4ZNXMDVFKG.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/SwiftShims-DM3VXY33XOPTXF31XQ1BVPDUW.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreFoundation-CPH2V525OP6E0G7C7ME6CC6RY.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_SwiftConcurrencyShims-E9JIMJJRMU6QPUYVLT0QCTUWN.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreTransferable-9RMA32NFHOVD89K8DR60DIPSK.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/Spatial-D2XPGV171DA9UNDPE054CC59L.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/os-6THEMQ2FCSDDBOAJ97TI0C7ET.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/WatchKit-8VUX2GULTDX1DCQUYGHG8FU0A.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/UniformTypeIdentifiers-7UWU40JN40WD8USRVNFGRGE3H.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/Symbols-3SJ4ZDNWLKO586CEMLIR7GLA7.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/SwiftUICore-1ZMDJBGBKZAOZ7XWITUZJD5FY.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_inttypes-A9AH3FZ54I2RFUUG3DLJCUSGZ.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/ptrauth-AZVNOO4V2LUYX142C1UYEUYGF.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/Accessibility-ESZIC2XA3CU773RYV0LKEY5JR.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_stddef-5MJQAD7UCXBWZWYLAH2PGLRPR.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/ptrcheck-2B3RJT5E0CKAJNX0DH4FQQFGP.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_DarwinFoundation3-U69REUXM9AJ1KDZL8RHHJ2PF.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/DataDetection-1U7IY4NUHDQUSU209OQZ2NB99.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_tgmath-76PCCV6FWW1L41UGWLO1857RU.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_stdbool-8XIN9X651DTRE6NYTGSN9PGF5.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_intrinsics-91PPVIEGW2MDPS18R54JY2W5X.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/XPC-31K1L5K02XVQN3I24AYG06GZI.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreLocation-D4WZ34JL1LBPKU5LLOYQ3MGXW.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/ObjectiveC-24XVM7D2PU69EV4EN2JYYC5IG.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/MachO-335GNHJAUYNC91AX25AGY9DDA.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/SceneKit-TZF13TQXKA0TLQQLTB1IP68Z.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_stdint-EPB95G5THJ90BDS63CGJ18A69.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreData-D8GDE8A4N7G9RWR4F4QZTTH0U.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/UIKit-5TZ4MJZOD2U99SNX7X8XSPC06.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/sys_types-3TRHH5U8CWKHRR7N3D67BFZ35.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_float-ES694YVX3GE6W1IBOCQ2P1DKS.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/os_workgroup-NW2OGC2PUYOKEV9HJC3I726M.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/_Builtin_limits-A6PG81Y4Q9VW1IGJQID08DNUE.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/Darwin-3HIKM70O1RKF75MP77JIJEJXX.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/QuartzCore-5U0ERLQSIKPSERJEQEYJR8ZI2.pcm /Users/runner/work/_temp/dd/ModuleCache.noindex/CoreText-6RPL7DFHMG16UER3NU5880N7F.pcm /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2-dependencies-2.json /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2-primary-Bridging-header.pch (in target 'HermesEnabler2' from project 'HermesEnabler2')
+CompileSwift normal arm64_32 (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling ContentView.swift, HermesEnabler2App.swift, GeneratedAssetSymbols.swift (in target 'HermesEnabler2' from project 'HermesEnabler2')
+
+SwiftDriver\ Compilation\ Requirements HermesEnabler2 normal arm64 com.apple.xcode.tools.swift.compiler (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name HermesEnabler2 -O -whole-module-optimization @/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.SwiftFileList -default-isolation\=MainActor -enable-bare-slash-regex -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.6.app/Contents/Developer/Platforms/WatchOS.platform/Developer/SDKs/WatchOS26.5.sdk -target arm64-apple-watchos26.0 -g -module-cache-path /Users/runner/work/_temp/dd/ModuleCache.noindex -Xfrontend -serialize-debugging-options -swift-version 5 -I /Users/runner/work/_temp/dd/Build/Products/Release-watchos -F /Users/runner/work/_temp/dd/Build/Products/Release-watchos -emit-localized-strings -emit-localized-strings-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64 -c -num-threads 3 -Xcc -ivfsstatcache -Xcc /Users/runner/work/_temp/dd/SDKStatCaches.noindex/watchos26.5-23T570-688ef53f1462e2c8f657fdc38a81448f6f39cd4ed9f891394c9a6a463e5c5cb7.sdkstatcache -output-file-map /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/_temp/dd/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/_temp/dd/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/_temp/dd/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-generated-files.hmap -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-own-target-headers.hmap -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-project-headers.hmap -Xcc -I/Users/runner/work/_temp/dd/Build/Products/Release-watchos/include -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources/arm64 -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2-Swift.h -import-objc-header /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/Bridging-Header.h -working-directory /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2 -no-emit-module-separately-wmo
+
+Copy /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.swiftmodule/arm64-apple-watchos.swiftmodule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.swiftmodule (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.swiftmodule /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.swiftmodule/arm64-apple-watchos.swiftmodule
+
+Copy /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.swiftmodule/arm64-apple-watchos.swiftdoc /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.swiftdoc (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.swiftdoc /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.swiftmodule/arm64-apple-watchos.swiftdoc
+
+Copy /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.swiftmodule/arm64-apple-watchos.abi.json /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.abi.json (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.abi.json /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.swiftmodule/arm64-apple-watchos.abi.json
+
+Copy /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.swiftmodule/Project/arm64-apple-watchos.swiftsourceinfo /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.swiftsourceinfo (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.swiftsourceinfo /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.swiftmodule/Project/arm64-apple-watchos.swiftsourceinfo
+
+SwiftDriverJobDiscovery normal arm64_32 Compiling ContentView.swift, HermesEnabler2App.swift, GeneratedAssetSymbols.swift (in target 'HermesEnabler2' from project 'HermesEnabler2')
+
+SwiftDriver\ Compilation\ Requirements HermesEnabler2 normal arm64_32 com.apple.xcode.tools.swift.compiler (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name HermesEnabler2 -O -whole-module-optimization @/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.SwiftFileList -default-isolation\=MainActor -enable-bare-slash-regex -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_26.6.app/Contents/Developer/Platforms/WatchOS.platform/Developer/SDKs/WatchOS26.5.sdk -target arm64_32-apple-watchos26.0 -g -module-cache-path /Users/runner/work/_temp/dd/ModuleCache.noindex -Xfrontend -serialize-debugging-options -swift-version 5 -I /Users/runner/work/_temp/dd/Build/Products/Release-watchos -F /Users/runner/work/_temp/dd/Build/Products/Release-watchos -emit-localized-strings -emit-localized-strings-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32 -c -num-threads 3 -Xcc -ivfsstatcache -Xcc /Users/runner/work/_temp/dd/SDKStatCaches.noindex/watchos26.5-23T570-688ef53f1462e2c8f657fdc38a81448f6f39cd4ed9f891394c9a6a463e5c5cb7.sdkstatcache -output-file-map /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/runner/work/_temp/dd/ModuleCache.noindex -sdk-module-cache-path /Users/runner/work/_temp/dd/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/work/_temp/dd/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-generated-files.hmap -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-own-target-headers.hmap -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2-project-headers.hmap -Xcc -I/Users/runner/work/_temp/dd/Build/Products/Release-watchos/include -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources-normal/arm64_32 -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources/arm64_32 -Xcc -I/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2-Swift.h -import-objc-header /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/Bridging-Header.h -working-directory /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2 -no-emit-module-separately-wmo
+
+SwiftMergeGeneratedHeaders /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources/HermesEnabler2-Swift.h /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2-Swift.h /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2-Swift.h (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    builtin-swiftHeaderTool -arch arm64 /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2-Swift.h -arch arm64_32 /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2-Swift.h -o /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/DerivedSources/HermesEnabler2-Swift.h
+
+Copy /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.swiftmodule/arm64_32-apple-watchos.swiftmodule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.swiftmodule (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.swiftmodule /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.swiftmodule/arm64_32-apple-watchos.swiftmodule
+
+Copy /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.swiftmodule/arm64_32-apple-watchos.swiftdoc /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.swiftdoc (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.swiftdoc /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.swiftmodule/arm64_32-apple-watchos.swiftdoc
+
+Copy /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.swiftmodule/arm64_32-apple-watchos.abi.json /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.abi.json (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.abi.json /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.swiftmodule/arm64_32-apple-watchos.abi.json
+
+Copy /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.swiftmodule/Project/arm64_32-apple-watchos.swiftsourceinfo /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.swiftsourceinfo (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.swiftsourceinfo /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.swiftmodule/Project/arm64_32-apple-watchos.swiftsourceinfo
+
+ScanDependencies /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/BQCore.o /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/BQCore.m normal arm64_32 objective-c com.apple.compilers.llvm.clang.1_0.compiler (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    
+    Using response file: /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/e6072d4f65d7061329687fe24e3d63a7-common-args.resp
+    
+    builtin-ScanDependencies -o /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/BQCore.o.scan -- /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -ivfsstatcache /Users/runner/work/_temp/dd/SDKStatCaches.noindex/watchos26.5-23T570-688ef53f1462e2c8f657fdc38a81448f6f39cd4ed9f891394c9a6a463e5c5cb7.sdkstatcache -target arm64_32-apple-watchos26.0 -fmessage-length\=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit\=0 -fno-color-diagnostics -fmodules-prune-interval\=86400 -fmodules-prune-after\=345600 -fbuild-session-file\=/Users/runner/work/_temp/dd/ModuleCache.noindex/Session.modulevalidation -fmodules-validate-once-per-build-session -Wnon-modular-include-in-framework-module -Werror\=non-modular-include-in-framework-module -Wno-trigraphs -Wno-missing-field-initializers -Wno-missing-prototypes -Werror\=return-type -Wdocumentation -Wunreachable-code -Wquoted-include-in-framework-header -Wno-implicit-atomic-properties -Werror\=deprecated-objc-isa-usage -Wno-objc-interface-ivars -Werror\=objc-root-class -Wno-arc-repeated-use-of-weak -Wimplicit-retain-self -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wno-float-conversion -Wnon-literal-null-conversion -Wobjc-literal-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wdeprecated-implementations -Wno-implicit-fallthrough -isysroot /Applications/Xcode_26.6.app/Contents/Developer/Platforms/WatchOS.platform/Developer/SDKs/WatchOS26.5.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Wno-sign-conversion -Winfinite-recursion -Wcomma -Wblock-capture-autoreleasing -Wstrict-prototypes -Wno-semicolon-before-method-body -Wunguarded-availability @/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/e6072d4f65d7061329687fe24e3d63a7-common-args.resp -MMD -MT dependencies -MF /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/BQCore.d --serialize-diagnostics /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/BQCore.dia -c /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/BQCore.m -o /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/BQCore.o
+
+ScanDependencies /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/BQCore.o /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/BQCore.m normal arm64 objective-c com.apple.compilers.llvm.clang.1_0.compiler (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    
+    Using response file: /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/e6072d4f65d7061329687fe24e3d63a7-common-args.resp
+    
+    builtin-ScanDependencies -o /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/BQCore.o.scan -- /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -ivfsstatcache /Users/runner/work/_temp/dd/SDKStatCaches.noindex/watchos26.5-23T570-688ef53f1462e2c8f657fdc38a81448f6f39cd4ed9f891394c9a6a463e5c5cb7.sdkstatcache -target arm64-apple-watchos26.0 -fmessage-length\=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit\=0 -fno-color-diagnostics -fmodules-prune-interval\=86400 -fmodules-prune-after\=345600 -fbuild-session-file\=/Users/runner/work/_temp/dd/ModuleCache.noindex/Session.modulevalidation -fmodules-validate-once-per-build-session -Wnon-modular-include-in-framework-module -Werror\=non-modular-include-in-framework-module -Wno-trigraphs -Wno-missing-field-initializers -Wno-missing-prototypes -Werror\=return-type -Wdocumentation -Wunreachable-code -Wquoted-include-in-framework-header -Wno-implicit-atomic-properties -Werror\=deprecated-objc-isa-usage -Wno-objc-interface-ivars -Werror\=objc-root-class -Wno-arc-repeated-use-of-weak -Wimplicit-retain-self -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wno-float-conversion -Wnon-literal-null-conversion -Wobjc-literal-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wdeprecated-implementations -Wno-implicit-fallthrough -isysroot /Applications/Xcode_26.6.app/Contents/Developer/Platforms/WatchOS.platform/Developer/SDKs/WatchOS26.5.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Wno-sign-conversion -Winfinite-recursion -Wcomma -Wblock-capture-autoreleasing -Wstrict-prototypes -Wno-semicolon-before-method-body -Wunguarded-availability @/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/e6072d4f65d7061329687fe24e3d63a7-common-args.resp -MMD -MT dependencies -MF /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/BQCore.d --serialize-diagnostics /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/BQCore.dia -c /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/BQCore.m -o /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/BQCore.o
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_stdbool-EW5BARQ4Q8K5023XDFCWM28ZR.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_stdbool-EW5BARQ4Q8K5023XDFCWM28ZR.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_AvailabilityInternal-IJN1QP6IPTM0M69I1YWSRSH6.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_AvailabilityInternal-IJN1QP6IPTM0M69I1YWSRSH6.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/ptrcheck-EO74JCRFSQP79W1I5D34W2SCO.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/ptrcheck-EO74JCRFSQP79W1I5D34W2SCO.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_stddef-9YB2N7G9FT3QI0MPT0VUV2RB0.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_stddef-9YB2N7G9FT3QI0MPT0VUV2RB0.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/ptrauth-EZLZ5ZD7UAEACVNB384G63N1L.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/ptrauth-EZLZ5ZD7UAEACVNB384G63N1L.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_stdarg-2Y2B439VP748Z4CRM8SIMBIB.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_stdarg-2Y2B439VP748Z4CRM8SIMBIB.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_DarwinFoundation1-11KJLZZX7R05VV1EU9Q8RL91L.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_DarwinFoundation1-11KJLZZX7R05VV1EU9Q8RL91L.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/ptrauth-9RYKBYB2GWUACKDG26249H9J9.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/ptrauth-9RYKBYB2GWUACKDG26249H9J9.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_stdbool-3LB6JEEY6HJ40HOMMGV7KHHMQ.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_stdbool-3LB6JEEY6HJ40HOMMGV7KHHMQ.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_stdarg-CDEZNDQ9E3T6NSSM6WP83GMQR.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_stdarg-CDEZNDQ9E3T6NSSM6WP83GMQR.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_stddef-BD2YBMW3RR792L4XWBFLDQYIS.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_stddef-BD2YBMW3RR792L4XWBFLDQYIS.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/ptrcheck-2SS0NIMXHVPDNPAZK5Q0ZP2T1.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/ptrcheck-2SS0NIMXHVPDNPAZK5Q0ZP2T1.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_float-97KGIAHXYGONKNQ3TYVJDZCZ1.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_float-97KGIAHXYGONKNQ3TYVJDZCZ1.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_AvailabilityInternal-7HBAHGQIEV2XPDUIWOEVLXP17.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_AvailabilityInternal-7HBAHGQIEV2XPDUIWOEVLXP17.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_float-777L0EK2NIWXLSJ6IJD286F0E.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_float-777L0EK2NIWXLSJ6IJD286F0E.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_limits-855IBVBWQ22I9OCI0QJ2G5UAS.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_limits-855IBVBWQ22I9OCI0QJ2G5UAS.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_DarwinFoundation2-DN4RTLLFF3LVUIE3M7U3EET4M.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_DarwinFoundation2-DN4RTLLFF3LVUIE3M7U3EET4M.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_DarwinFoundation1-65JRNHHMYW5J5OTEF7FK682AY.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_DarwinFoundation1-65JRNHHMYW5J5OTEF7FK682AY.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_limits-BINH3A0LK3QGY748SJS7N2F9P.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_limits-BINH3A0LK3QGY748SJS7N2F9P.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_DarwinFoundation2-75HVTT39ANPHCLRQH1ZX9W5KR.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_DarwinFoundation2-75HVTT39ANPHCLRQH1ZX9W5KR.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_stdint-7L0GBMQH3IL8GNB9JWYF3FX0C.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_stdint-7L0GBMQH3IL8GNB9JWYF3FX0C.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_tgmath-BGRNJCPF1008TAMOPEE4UDM9Z.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_tgmath-BGRNJCPF1008TAMOPEE4UDM9Z.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_tgmath-RZP7IK2CKTEIR0F4569VMM6B.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_tgmath-RZP7IK2CKTEIR0F4569VMM6B.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_stdint-DCB6CN9IMQ06G0A6EE8NNODM7.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_stdint-DCB6CN9IMQ06G0A6EE8NNODM7.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_DarwinFoundation3-29NZ00RMWSERNY579P734I4J5.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_DarwinFoundation3-29NZ00RMWSERNY579P734I4J5.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_intrinsics-2SLZV8KP9S35EQG7OKHFJZ52T.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_intrinsics-2SLZV8KP9S35EQG7OKHFJZ52T.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_DarwinFoundation3-47VMCXYKRN7PO6YI3FQ6G61CE.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_DarwinFoundation3-47VMCXYKRN7PO6YI3FQ6G61CE.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_intrinsics-3HB2IB8GGSC8EGR4Q3VSXCRD1.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_intrinsics-3HB2IB8GGSC8EGR4Q3VSXCRD1.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/zlib-9ABVE8ELGHEHEQ1X3A0Y0U6LD.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/zlib-9ABVE8ELGHEHEQ1X3A0Y0U6LD.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_inttypes-DLJ4QQ86KWQOF58YQMJ6AF10H.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_inttypes-DLJ4QQ86KWQOF58YQMJ6AF10H.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_inttypes-9IS6AZESRDF90BEB26HP5THOB.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_Builtin_inttypes-9IS6AZESRDF90BEB26HP5THOB.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/Darwin-EGI5OXYQ2MSFMQD3S1ZZDU4YY.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/Darwin-EGI5OXYQ2MSFMQD3S1ZZDU4YY.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/Darwin-82HS0V7QO4H5NODQV5MDSKSZA.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/Darwin-82HS0V7QO4H5NODQV5MDSKSZA.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/simd-3QAEP2Q61ISUZPE7VOOPVKW1R.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/simd-3QAEP2Q61ISUZPE7VOOPVKW1R.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/simd-6FBR4C5SS0QZGKWYHR0POC8DN.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/simd-6FBR4C5SS0QZGKWYHR0POC8DN.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/ObjectiveC-1KOS88650M5B2K9P4VEM0N3CA.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/ObjectiveC-1KOS88650M5B2K9P4VEM0N3CA.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/ObjectiveC-4IM1563G3P3J5S1SK7OUOJS68.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/ObjectiveC-4IM1563G3P3J5S1SK7OUOJS68.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/os_object-ENFPSGJZNUT7S80I9MGY6DZ8F.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/os_object-ENFPSGJZNUT7S80I9MGY6DZ8F.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/os_object-6L7RAZR2EXFH1ZGTK6C0U5SQW.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/os_object-6L7RAZR2EXFH1ZGTK6C0U5SQW.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/os_workgroup-5ZGGOL6YDZRHGKVTAZH8C7A1V.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/os_workgroup-5ZGGOL6YDZRHGKVTAZH8C7A1V.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/os_workgroup-9ZW3C6C82AWLUS4VI194B7FKM.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/os_workgroup-9ZW3C6C82AWLUS4VI194B7FKM.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/Dispatch-84KMVR7KRBKG8G96527OZIOOS.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/Dispatch-84KMVR7KRBKG8G96527OZIOOS.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/Dispatch-AKJVFJQEPKMQKQAUDZI4D0SIK.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/Dispatch-AKJVFJQEPKMQKQAUDZI4D0SIK.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/XPC-6YP0VIT9QKMO7AI9M3XO5Y3AA.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/XPC-6YP0VIT9QKMO7AI9M3XO5Y3AA.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/CoreFoundation-9K9CI9PTN46CEUKBWTMJA6D95.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/CoreFoundation-9K9CI9PTN46CEUKBWTMJA6D95.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/CoreFoundation-DDVAZMPLXRUAY9KQVQCEI3K06.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/CoreFoundation-DDVAZMPLXRUAY9KQVQCEI3K06.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/zlib-8G11UTZ4S3MT9E3JHTA9SEZW0.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/zlib-8G11UTZ4S3MT9E3JHTA9SEZW0.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/Security-2DE6CA3WNZJTR4LE05JYW07FR.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/Security-2DE6CA3WNZJTR4LE05JYW07FR.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/CoreGraphics-8FW6QJ1K0I2NRDWBDWPG9SF5O.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/CoreGraphics-8FW6QJ1K0I2NRDWBDWPG9SF5O.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/Security-586SW74IQ8FHY0UTG1O9YHNX2.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/Security-586SW74IQ8FHY0UTG1O9YHNX2.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/Foundation-6Q72G78ZZHVQYHK0N3G5ZOAFT.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/Foundation-6Q72G78ZZHVQYHK0N3G5ZOAFT.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/CoreText-BYWMG9R0YP7O2YL927PE6QUJ7.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/CoreText-BYWMG9R0YP7O2YL927PE6QUJ7.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/CoreGraphics-DZ17MPSVWHRT5PTV2UOZGL0MC.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/CoreGraphics-DZ17MPSVWHRT5PTV2UOZGL0MC.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/CoreVideo-4R3UDT9LHNPSV92XYJPC4G7MZ.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/CoreVideo-4R3UDT9LHNPSV92XYJPC4G7MZ.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/CoreText-AQMOWFFIM7LMQH507NHWSFEG7.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/CoreText-AQMOWFFIM7LMQH507NHWSFEG7.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/CoreVideo-EKRGDW0QXWMPUFX5FCV9IXHZB.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/CoreVideo-EKRGDW0QXWMPUFX5FCV9IXHZB.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/XPC-6ZXRD0YIDL5RQA4KH8JAG8F01.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/XPC-6ZXRD0YIDL5RQA4KH8JAG8F01.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/Foundation-9RGXF124ZATGK2UISC2UG3415.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/Foundation-9RGXF124ZATGK2UISC2UG3415.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/UIUtilities-BNJZZMU1VINDJM65CWO2LHP40.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/UIUtilities-BNJZZMU1VINDJM65CWO2LHP40.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/SceneKit-8GOTV7MH87ZI4HRY21BY8UOZD.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/SceneKit-8GOTV7MH87ZI4HRY21BY8UOZD.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/QuartzCore-CN6W8NZCVR5K9X29W7N2LEBH2.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/QuartzCore-CN6W8NZCVR5K9X29W7N2LEBH2.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_LocationEssentials-8MEJJ2ZZ9005F4N2FQ1KP83A0.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_LocationEssentials-8MEJJ2ZZ9005F4N2FQ1KP83A0.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/Symbols-70TFTAML6O6FJA1WZ8OT3UN90.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/Symbols-70TFTAML6O6FJA1WZ8OT3UN90.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/UserNotifications-2IB6MPY1TSCJ6IUBTWP0MLJ81.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/UserNotifications-2IB6MPY1TSCJ6IUBTWP0MLJ81.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/CoreLocation-A5RKMIKCRNDK273TT4A922IF7.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/CoreLocation-A5RKMIKCRNDK273TT4A922IF7.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/UIKit-864MXHIM75NKZSAVOU3HCSN48.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/UIKit-864MXHIM75NKZSAVOU3HCSN48.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/UserNotifications-CPX23WDM2WQ64ICVN39MSWO33.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/UserNotifications-CPX23WDM2WQ64ICVN39MSWO33.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_LocationEssentials-213QXZFR2Y4A66BQSGHL8GB5W.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/_LocationEssentials-213QXZFR2Y4A66BQSGHL8GB5W.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/Symbols-NWEFK7OFAZG6FBCOSMXEBJA8.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/Symbols-NWEFK7OFAZG6FBCOSMXEBJA8.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/CoreLocation-DFR167ODFF2ATNDIPN7Y7UT.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/CoreLocation-DFR167ODFF2ATNDIPN7Y7UT.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/UIUtilities-96X3PPG0GSSYFKYLGFYY05WZE.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/UIUtilities-96X3PPG0GSSYFKYLGFYY05WZE.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/SceneKit-8J5T1ABFNT0KCDXC50FQJ8IBW.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/SceneKit-8J5T1ABFNT0KCDXC50FQJ8IBW.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/QuartzCore-1CLBQFL0KKURGNTQJY43XU9GT.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/QuartzCore-1CLBQFL0KKURGNTQJY43XU9GT.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/UIKit-B4FVUS72F3E15OCPUSD9TUU2Z.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/UIKit-B4FVUS72F3E15OCPUSD9TUU2Z.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/HomeKit-CE4H2RZRSOVID3S9QKW0E54O7.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/HomeKit-CE4H2RZRSOVID3S9QKW0E54O7.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/MapKit-DOSM2VS70GVZ6WDSADZOZBH15.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/MapKit-DOSM2VS70GVZ6WDSADZOZBH15.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/MapKit-ZS0AJ55H9JMY0JCECOUMTV98.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/MapKit-ZS0AJ55H9JMY0JCECOUMTV98.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/HomeKit-CILH5LW2VRBNF2V7AGZO53Z43.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/HomeKit-CILH5LW2VRBNF2V7AGZO53Z43.scan
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/WatchKit-CYBM8Z3SMRHHKWGE9A01Z2YN3.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/WatchKit-CYBM8Z3SMRHHKWGE9A01Z2YN3.scan
+
+CompileC /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/BQCore.o /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/BQCore.m normal arm64 objective-c com.apple.compilers.llvm.clang.1_0.compiler (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    
+    Using response file: /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/e6072d4f65d7061329687fe24e3d63a7-common-args.resp
+    
+    /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -ivfsstatcache /Users/runner/work/_temp/dd/SDKStatCaches.noindex/watchos26.5-23T570-688ef53f1462e2c8f657fdc38a81448f6f39cd4ed9f891394c9a6a463e5c5cb7.sdkstatcache -target arm64-apple-watchos26.0 -fmessage-length\=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit\=0 -fno-color-diagnostics -fmodules-prune-interval\=86400 -fmodules-prune-after\=345600 -fbuild-session-file\=/Users/runner/work/_temp/dd/ModuleCache.noindex/Session.modulevalidation -fmodules-validate-once-per-build-session -Wnon-modular-include-in-framework-module -Werror\=non-modular-include-in-framework-module -Wno-trigraphs -Wno-missing-field-initializers -Wno-missing-prototypes -Werror\=return-type -Wdocumentation -Wunreachable-code -Wquoted-include-in-framework-header -Wno-implicit-atomic-properties -Werror\=deprecated-objc-isa-usage -Wno-objc-interface-ivars -Werror\=objc-root-class -Wno-arc-repeated-use-of-weak -Wimplicit-retain-self -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wno-float-conversion -Wnon-literal-null-conversion -Wobjc-literal-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wdeprecated-implementations -Wno-implicit-fallthrough -isysroot /Applications/Xcode_26.6.app/Contents/Developer/Platforms/WatchOS.platform/Developer/SDKs/WatchOS26.5.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Wno-sign-conversion -Winfinite-recursion -Wcomma -Wblock-capture-autoreleasing -Wstrict-prototypes -Wno-semicolon-before-method-body -Wunguarded-availability @/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/e6072d4f65d7061329687fe24e3d63a7-common-args.resp -MMD -MT dependencies -MF /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/BQCore.d --serialize-diagnostics /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/BQCore.dia -c /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/BQCore.m -o /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/BQCore.o
+/Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/BQCore.m:312:14: warning: unused function 'bq_list' [-Wunused-function]
+  312 | static char *bq_list(const char *path, int64_t max_inode) {
+      |              ^~~~~~~
+1 warning generated.
+
+PrecompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/WatchKit-7DQOLFUIYK71ZQWS5BNC2Q9M9.scan
+    cd /
+    builtin-precompileModule /Users/runner/work/_temp/dd/Build/Intermediates.noindex/ExplicitPrecompiledModules/WatchKit-7DQOLFUIYK71ZQWS5BNC2Q9M9.scan
+
+CompileC /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/BQCore.o /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/BQCore.m normal arm64_32 objective-c com.apple.compilers.llvm.clang.1_0.compiler (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    
+    Using response file: /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/e6072d4f65d7061329687fe24e3d63a7-common-args.resp
+    
+    /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -ivfsstatcache /Users/runner/work/_temp/dd/SDKStatCaches.noindex/watchos26.5-23T570-688ef53f1462e2c8f657fdc38a81448f6f39cd4ed9f891394c9a6a463e5c5cb7.sdkstatcache -target arm64_32-apple-watchos26.0 -fmessage-length\=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit\=0 -fno-color-diagnostics -fmodules-prune-interval\=86400 -fmodules-prune-after\=345600 -fbuild-session-file\=/Users/runner/work/_temp/dd/ModuleCache.noindex/Session.modulevalidation -fmodules-validate-once-per-build-session -Wnon-modular-include-in-framework-module -Werror\=non-modular-include-in-framework-module -Wno-trigraphs -Wno-missing-field-initializers -Wno-missing-prototypes -Werror\=return-type -Wdocumentation -Wunreachable-code -Wquoted-include-in-framework-header -Wno-implicit-atomic-properties -Werror\=deprecated-objc-isa-usage -Wno-objc-interface-ivars -Werror\=objc-root-class -Wno-arc-repeated-use-of-weak -Wimplicit-retain-self -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wno-float-conversion -Wnon-literal-null-conversion -Wobjc-literal-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wdeprecated-implementations -Wno-implicit-fallthrough -isysroot /Applications/Xcode_26.6.app/Contents/Developer/Platforms/WatchOS.platform/Developer/SDKs/WatchOS26.5.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Wno-sign-conversion -Winfinite-recursion -Wcomma -Wblock-capture-autoreleasing -Wstrict-prototypes -Wno-semicolon-before-method-body -Wunguarded-availability @/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/e6072d4f65d7061329687fe24e3d63a7-common-args.resp -MMD -MT dependencies -MF /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/BQCore.d --serialize-diagnostics /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/BQCore.dia -c /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/BQCore.m -o /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/BQCore.o
+/Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2/HermesEnabler2/BQCore.m:312:14: warning: unused function 'bq_list' [-Wunused-function]
+  312 | static char *bq_list(const char *path, int64_t max_inode) {
+      |              ^~~~~~~
+1 warning generated.
+
+Ld /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/Binary/HermesEnabler2 normal arm64 (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-watchos26.0 -isysroot /Applications/Xcode_26.6.app/Contents/Developer/Platforms/WatchOS.platform/Developer/SDKs/WatchOS26.5.sdk -Os -L/Users/runner/work/_temp/dd/Build/Intermediates.noindex/EagerLinkingTBDs/Release-watchos -L/Users/runner/work/_temp/dd/Build/Products/Release-watchos -F/Users/runner/work/_temp/dd/Build/Intermediates.noindex/EagerLinkingTBDs/Release-watchos -F/Users/runner/work/_temp/dd/Build/Products/Release-watchos -filelist /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.LinkFileList -Xlinker -rpath -Xlinker @executable_path/Frameworks -Xlinker -dead_strip -Xlinker -object_path_lto -Xlinker /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2_lto.o -Xlinker -dependency_info -Xlinker /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2_dependency_info.dat -fobjc-arc -fobjc-link-runtime -L/Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.swiftmodule @/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2-linker-args.resp -o /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/Binary/HermesEnabler2
+
+Ld /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/Binary/HermesEnabler2 normal arm64_32 (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64_32-apple-watchos26.0 -isysroot /Applications/Xcode_26.6.app/Contents/Developer/Platforms/WatchOS.platform/Developer/SDKs/WatchOS26.5.sdk -Os -L/Users/runner/work/_temp/dd/Build/Intermediates.noindex/EagerLinkingTBDs/Release-watchos -L/Users/runner/work/_temp/dd/Build/Products/Release-watchos -F/Users/runner/work/_temp/dd/Build/Intermediates.noindex/EagerLinkingTBDs/Release-watchos -F/Users/runner/work/_temp/dd/Build/Products/Release-watchos -filelist /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.LinkFileList -Xlinker -rpath -Xlinker @executable_path/Frameworks -Xlinker -dead_strip -Xlinker -object_path_lto -Xlinker /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2_lto.o -Xlinker -dependency_info -Xlinker /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2_dependency_info.dat -fobjc-arc -fobjc-link-runtime -L/Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.swiftmodule @/Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2-linker-args.resp -o /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/Binary/HermesEnabler2
+
+CreateUniversalBinary /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app/HermesEnabler2 normal arm64\ arm64_32 (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo -create /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/Binary/HermesEnabler2 /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/Binary/HermesEnabler2 -output /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app/HermesEnabler2
+
+GenerateDSYMFile /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app.dSYM /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app/HermesEnabler2 (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app/HermesEnabler2 -o /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app.dSYM
+
+ExtractAppIntentsMetadata (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v17.6.109.0.jpuCYh/Metal.xctoolchain --module-name HermesEnabler2 --sdk-root /Applications/Xcode_26.6.app/Contents/Developer/Platforms/WatchOS.platform/Developer/SDKs/WatchOS26.5.sdk --xcode-version 17F113 --platform-family watchOS --deployment-target 26.0 --bundle-identifier com.pookjw.MyApp.watchkitapp --output /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app --target-triple arm64-apple-watchos26.0 --target-triple arm64_32-apple-watchos26.0 --binary-file /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app/HermesEnabler2 --dependency-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2_dependency_info.dat --dependency-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2_dependency_info.dat --stringsdata-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --stringsdata-file /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.SwiftFileList --source-file-list /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.SwiftFileList --metadata-file-list /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2.DependencyMetadataFileList --static-metadata-file-list /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/HermesEnabler2.DependencyStaticMetadataFileList --swift-const-vals-list /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64/HermesEnabler2.SwiftConstValuesFileList --swift-const-vals-list /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/Objects-normal/arm64_32/HermesEnabler2.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-11-10 00:02:48.412 appintentsmetadataprocessor[2287:10224] Starting appintentsmetadataprocessor export
+2026-11-10 00:02:48.429 appintentsmetadataprocessor[2287:10224] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+CopySwiftLibs /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    builtin-swiftStdLibTool --copy --verbose --scan-executable /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app/HermesEnabler2 --scan-folder /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app/Frameworks --scan-folder /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app/PlugIns --scan-folder /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app/SystemExtensions --scan-folder /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app/Extensions --platform watchos --toolchain /var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v17.6.109.0.jpuCYh/Metal.xctoolchain --toolchain /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode_26.6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/runner/work/_temp/dd/Build/Intermediates.noindex/HermesEnabler2.build/Release-watchos/HermesEnabler2.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+Ignoring --strip-bitcode because --sign was not passed
+
+RegisterExecutionPolicyException /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    builtin-RegisterExecutionPolicyException /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app
+
+Validate /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    builtin-validationUtility /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app -validate-for-store -shallow-bundle -infoplist-subpath Info.plist
+
+Touch /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app (in target 'HermesEnabler2' from project 'HermesEnabler2')
+    cd /Users/runner/work/NX2Apple/NX2Apple/HermesEnabler2
+    /usr/bin/touch -c /Users/runner/work/_temp/dd/Build/Products/Release-watchos/HermesEnabler2.app
+
+** BUILD SUCCEEDED **
 
